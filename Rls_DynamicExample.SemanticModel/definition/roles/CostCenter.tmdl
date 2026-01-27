@@ -1,0 +1,17 @@
+role CostCenter
+	modelPermission: read
+
+	tablePermission Dim_CostCenter =
+			[CostCenter]
+			in
+			SELECTCOLUMNS(
+			    FILTER(
+			        'CostCenterUsers',
+			        CostCenterUsers[User] = [User Principle]
+			    ),
+			"CostCenter",
+			CostCenterUsers[CostCenter]
+			)
+
+	annotation PBI_Id = ec4952f668b944ccb08532d815633d48
+

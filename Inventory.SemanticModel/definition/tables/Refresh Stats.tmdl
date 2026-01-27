@@ -1,0 +1,23 @@
+table 'Refresh Stats'
+	isHidden
+	lineageTag: 1be2bb0b-6872-4226-8677-80eaaa7a33c3
+	sourceLineageTag: 2848ae2b-12ce-484f-94db-0e78e8f42666
+
+	column 'Last refresh datetime'
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		lineageTag: 87f1d3f0-2720-408e-af6f-c608d6aff13c
+		sourceLineageTag: 9c682d42-0e83-4c0c-ab38-9d7b3a6cdff2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Last refresh datetime
+
+		annotation SummarizationSetBy = User
+
+	partition 'Refresh Stats' = entity
+		mode: directQuery
+		source
+			entityName: Refresh Stats
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

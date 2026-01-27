@@ -1,0 +1,192 @@
+table _Measures
+	lineageTag: eb549e40-4705-4aa8-a315-4bf5934e925d
+	sourceLineageTag: f222eb83-4990-43b0-b43d-3e126eaaead2
+
+	measure 'Active capacities' = EXTERNALMEASURE("Active capacities", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		lineageTag: ec6fdb6d-e172-4929-9cf6-3097b8eb0cdf
+		sourceLineageTag: 192a1a9f-b1e9-4b9f-9fdb-97b85eceb0af
+		dataCategory: Uncategorized
+
+	measure 'Active users' = EXTERNALMEASURE("Active users", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		lineageTag: 484a0295-8dc2-4bee-8e46-f02082d2e94c
+		sourceLineageTag: fff06e1f-b051-4806-b8d1-f6afa8964b79
+		dataCategory: Uncategorized
+
+	measure 'Active workspaces' = EXTERNALMEASURE("Active workspaces", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		lineageTag: 3604a0ef-40b3-4841-bc5e-88318d58dcfb
+		sourceLineageTag: 7fb94ed5-f8f1-471c-99ce-f10d47751c58
+		dataCategory: Uncategorized
+
+	measure Activities = EXTERNALMEASURE("Activities", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		lineageTag: f3b9e513-47fb-40d3-b2a6-06473d3fe4ce
+		sourceLineageTag: 4afd234e-f79f-410f-91cb-e3696349b260
+		dataCategory: Uncategorized
+
+	measure Items = EXTERNALMEASURE("Items", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		lineageTag: bc4eac49-5c6e-4c95-baa7-dedbe5585a53
+		sourceLineageTag: 9a4092df-2ebb-4642-a3c7-a95b80f83b0d
+		dataCategory: Uncategorized
+
+	measure 'Total activities' = EXTERNALMEASURE("Total activities", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		isHidden
+		lineageTag: 59604f21-1967-4d06-b059-b4b9383a2421
+		sourceLineageTag: b86b826a-aa89-4c05-af39-ba5227b61d39
+		dataCategory: Uncategorized
+
+	measure 'Total items' = EXTERNALMEASURE("Total items", INTEGER, "DirectQuery to AS - Feature Usage and Adoption")
+		formatString: #,0
+		isHidden
+		lineageTag: 15310625-0a3c-4870-ad5d-f9840ad50856
+		sourceLineageTag: 39a84a69-3946-4a6e-9490-88c6d895088d
+		dataCategory: Uncategorized
+
+	measure 'Total active items alt text' = EXTERNALMEASURE("Total active items alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: 641723af-e8cf-4916-a884-b862c9ae744f
+		sourceLineageTag: 0a652725-d4ff-4bb4-9ef6-d81443219bec
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Total activities alt text' = EXTERNALMEASURE("Total activities alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: 52252240-0bc4-4737-ad37-ba39bfb4ac64
+		sourceLineageTag: e0e9dc88-0371-43ed-9cf8-66ff8ad7dc4d
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Total capacities alt text' = EXTERNALMEASURE("Total capacities alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: ded224cd-e761-4169-aea0-c46b03e6e9c0
+		sourceLineageTag: 3bd4590f-dcd2-418a-ab33-5a20a86fc1c0
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Total inactive items alt text' = EXTERNALMEASURE("Total inactive items alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: 9b1710ad-713f-4681-88f5-24753e3c46b9
+		sourceLineageTag: c86df408-b5f9-4c0e-9866-d7afdb840186
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Total items alt text' = EXTERNALMEASURE("Total items alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: a335090a-be79-4254-a13f-2d7b73e61bd0
+		sourceLineageTag: dae6ee05-327d-4f06-a332-906698e9cafb
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Total users alt text' = EXTERNALMEASURE("Total users alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: abdf8f31-92b0-4171-89ab-1f4fb91ee824
+		sourceLineageTag: 48633ca9-a672-43f2-a68d-53bb62ced4c6
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Total workspaces alt text' = EXTERNALMEASURE("Total workspaces alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: 1b88d569-37e4-43cc-aa52-70646aea8e3a
+		sourceLineageTag: e46dfdce-0c81-4639-93cd-4b10aa48e7da
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure 'Report last refreshed alt text' = EXTERNALMEASURE("Report last refreshed alt text", STRING, "DirectQuery to AS - Feature Usage and Adoption")
+		isHidden
+		displayFolder: Alt text
+		lineageTag: 7cb7ab73-21e4-401c-9898-46a562e5d2c2
+		sourceLineageTag: e84b9ec0-fda9-4b71-9d0b-801682823967
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	measure Reports = CALCULATE([Items], 'Fabric Items'[Item type]="Report")+0
+		formatString: 0
+		lineageTag: 6e434ec8-2a1f-4b64-9152-3f1ff5690fc4
+
+		changedProperty = Name
+
+	measure 'Semantic Models' = CALCULATE([Items],'Fabric Items'[Item type]= "SemanticModel")+0
+		formatString: 0
+		lineageTag: ca1c8124-6a53-4f13-975a-39c77869ad01
+
+		changedProperty = Name
+
+	measure 'Total Workspaces' = CALCULATE(COUNTROWS(WorkspacesM))
+		formatString: 0
+		lineageTag: 0f6792f4-d44c-4d0e-9b92-00cccb541e21
+
+		changedProperty = Name
+
+	measure 'Interacted Workspaces' = DISTINCTCOUNT('Audit'[WorkspaceKeyIndex])+0
+		formatString: 0
+		lineageTag: f77da49a-8c10-44f2-bbb5-ad940cdaa751
+
+		changedProperty = Name
+
+	measure 'Interacted Items' = DISTINCTCOUNT(Audit[ObjectKeyIndex])
+		formatString: 0
+		lineageTag: 7dc896d8-45bb-4a7f-ab80-19e69f9f7ffc
+
+		changedProperty = Name
+
+	measure 'Interacted SM' = CALCULATE([Interacted Items],'Fabric Items'[Item type]="SemanticModel")+0
+		formatString: 0
+		lineageTag: f5964ec9-3e7d-435e-806f-7c992102a6e0
+
+		changedProperty = Name
+
+	measure Interactions = countrows(Audit)+0
+		formatString: 0
+		lineageTag: 671a3831-dbdf-4845-99ac-63cb54fe8467
+
+		changedProperty = Name
+
+	measure 'Interacted Apps' = CALCULATE([Interactions],'Fabric Items'[Item type]="App")+0
+		formatString: 0
+		lineageTag: 26998031-0472-481e-b55a-fe5d80d0bbd3
+
+		changedProperty = Name
+
+	measure Refreshes = CALCULATE([Activities],Audit[Operation]="RefreshDataset")
+		formatString: 0
+		lineageTag: b8490cc5-d960-463d-ac7a-dfb307c2f4ee
+
+		changedProperty = Name
+
+	column Value
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 69e7b8b4-0cfa-4db2-9082-5b18d974eebe
+		sourceLineageTag: 7c47da42-2f1b-4704-a63e-31fc0a2a29b1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = User
+
+	partition _Measures = entity
+		mode: directQuery
+		source
+			entityName: _Measures
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

@@ -1,0 +1,35 @@
+table DynamicUsers
+	lineageTag: 5ce0f162-7956-4c60-a25f-6fb71db0ba74
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 28ce0ece-7a96-40be-8bca-0474c7f12aff
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column User
+		dataType: string
+		lineageTag: 8a9ca9fc-c1c4-4fd3-9474-bdea948d8f5a
+		summarizeBy: none
+		sourceColumn: User
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DynamicUsers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp_v2.xlsx"), null, true),
+				    DynamicUsers_Sheet = Source{[Item="DynamicUsers",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DynamicUsers_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"User", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

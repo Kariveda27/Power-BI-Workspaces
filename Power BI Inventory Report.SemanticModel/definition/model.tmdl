@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["stg_pbi_apps_details","stg_pbi_dashboard_details","stg_pbi_dataflow_details","stg_pbi_dataset_details","stg_pbi_report_details","stg_pbi_workspace_details","stg_pbi_workspaceusers_details","stg_pbi_workspaceusers_metadata","Measures Table","stg_pbi_appusers_details","stg_pbi_appusers_metadata","stg_pbi_dataset_details_2"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table stg_pbi_apps_details
+ref table stg_pbi_dataset_details
+ref table stg_pbi_report_details
+ref table stg_pbi_workspace_details
+ref table stg_pbi_workspaceusers_metadata
+ref table 'Measures Table'
+ref table stg_pbi_appusers_metadata
+ref table stg_pbi_dataset_details_2
+ref table 'User details'
+ref table 'AD Groups'
+
+ref cultureInfo en-US
+

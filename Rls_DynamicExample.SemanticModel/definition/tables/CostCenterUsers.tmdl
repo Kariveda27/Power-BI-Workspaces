@@ -1,0 +1,41 @@
+table CostCenterUsers
+	lineageTag: 0961c1de-f692-4132-9479-b349fc6cc23c
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: e98629b1-4dbf-4abd-862f-e6256d203318
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCenter
+		dataType: string
+		lineageTag: 4b1753d8-5437-488d-a4b8-5cbf9f1fc8d3
+		summarizeBy: none
+		sourceColumn: CostCenter
+
+		annotation SummarizationSetBy = Automatic
+
+	column User
+		dataType: string
+		lineageTag: 651cfa32-326d-43a0-bec8-dbd9984857f6
+		summarizeBy: none
+		sourceColumn: User
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CostCenterUsers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp.xlsx"), null, true),
+				    CostCenterUsers_Sheet = Source{[Item="CostCenterUsers",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(CostCenterUsers_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"CostCenter", type text}, {"User", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

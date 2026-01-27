@@ -1,0 +1,43 @@
+table Dim_Country
+	lineageTag: 7d08e0be-b9a3-440a-96a6-ef0ab28097d5
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: e9c3b34d-2d02-44c4-86d3-e0e5b57c3a6d
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: d23b7d89-01e9-46d6-b16a-dfbdb3f38cb0
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 20b97b7e-d97f-491d-934d-4dae213bdb5f
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Country = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp_v2.xlsx"), null, true),
+				    Dim_Country_Sheet = Source{[Item="Dim_Country",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Country_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"CountryCode", type text}, {"Country", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

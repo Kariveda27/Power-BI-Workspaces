@@ -1,0 +1,11 @@
+expression 'DirectQuery to AS - Feature Usage and Adoption' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/Admin%20monitoring", "Feature Usage and Adoption"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: c04dccc1-7e20-405b-9d8c-c40c2ed0bd73
+
+	annotation PBI_IncludeFutureArtifacts = True
+

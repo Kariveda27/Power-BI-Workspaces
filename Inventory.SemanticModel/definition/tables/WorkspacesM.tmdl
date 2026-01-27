@@ -1,0 +1,76 @@
+table WorkspacesM
+	lineageTag: 4b3a9f6f-fa3b-4ee3-8cf3-e6b033c08b57
+
+	column 'Workspace name'
+		dataType: string
+		lineageTag: 007f7138-ad8c-4e55-9aac-1deac3d2ba69
+		summarizeBy: none
+		sourceColumn: Workspace name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace type'
+		dataType: string
+		lineageTag: 891c17ca-e5c0-4cb6-aa00-901f89e54add
+		summarizeBy: none
+		sourceColumn: Workspace type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workspace Id'
+		dataType: string
+		lineageTag: 1d1dd747-5ef5-478c-b4d8-335f15d908d6
+		summarizeBy: none
+		sourceColumn: Workspace Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domain Id'
+		dataType: string
+		lineageTag: 97c50778-a542-42ce-be2e-a20745195bab
+		summarizeBy: none
+		sourceColumn: Domain Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Capacity Id'
+		dataType: string
+		lineageTag: e75d19c5-df7c-469f-b4d7-4595d8e10439
+		summarizeBy: none
+		sourceColumn: Capacity Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Url
+		dataType: string
+		lineageTag: e0ba2763-8f77-44ba-bbe1-711c8b20981d
+		summarizeBy: none
+		sourceColumn: Url
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Compliance Status'
+		dataType: string
+		lineageTag: 0fea8252-b587-4e2c-b6eb-00a69fe58694
+		summarizeBy: none
+		sourceColumn: Compliance Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WorkspacesM = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://jazzpharma.sharepoint.com/sites/PowerBICOE/Shared%20Documents/3.%20Governance/Governance%20-%20Power%20BI%20COE/Workspaces.xlsx"), null, true),
+				    #"New Report_Sheet" = Source{[Item="New Report",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"New Report_Sheet",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Workspace name", type text}, {"Workspace type", type text}, {"Workspace Id", type text}, {"Domain Id", type text}, {"Capacity Id", type text}, {"Url", type text}, {"Compliance Status", type text}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

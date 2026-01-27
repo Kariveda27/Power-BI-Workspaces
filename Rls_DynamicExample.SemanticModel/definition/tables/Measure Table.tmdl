@@ -1,0 +1,36 @@
+table 'Measure Table'
+	lineageTag: e7d4a1d5-b4cb-4d54-b6ac-7ed133e67683
+
+	measure 'User Principle' = USERPRINCIPALNAME()
+		lineageTag: 2bb197ef-15cf-4264-b817-0413e5b23fa5
+
+	measure ProfileIds =
+			
+			LOOKUPVALUE(CostCenterUsers[CostCenter],)
+		lineageTag: 0faadeb7-b973-4a47-930b-461f00e529fa
+
+	measure CostCenterAccess =
+			
+			FILTER(
+			    CostCenterUsers,
+			    CostCenterUsers[User] = USERPRINCIPALNAME() )
+			    )
+		lineageTag: ee6a8fdc-4718-4482-84ab-f4f367e671f1
+
+	column Column
+		formatString: 0
+		lineageTag: 0b62f507-7e8e-405b-936a-607f2e9b3c3e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measure Table' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = effd8d2e25cf42789191806221c2b526
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

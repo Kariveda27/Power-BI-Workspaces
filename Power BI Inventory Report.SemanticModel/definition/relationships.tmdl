@@ -1,0 +1,45 @@
+relationship a261b23c-da5b-2e2f-0662-5666e1839a46
+	crossFilteringBehavior: bothDirections
+	fromColumn: stg_pbi_workspaceusers_metadata.workspaceid
+	toColumn: stg_pbi_workspace_details.id
+
+relationship cf3f681b-16e3-461e-7cc3-e95a4a17095f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: stg_pbi_apps_details.workspaceid
+	toColumn: stg_pbi_workspace_details.id
+
+relationship c39963aa-049e-7d16-3f0f-f143b36fad4d
+	crossFilteringBehavior: bothDirections
+	fromColumn: stg_pbi_dataset_details.workspaceid
+	toColumn: stg_pbi_workspace_details.id
+
+relationship AutoDetected_da623cf7-b71c-46c9-9ecc-5e6a4abcef9d
+	fromColumn: stg_pbi_appusers_metadata.workspaceid
+	toColumn: stg_pbi_workspace_details.id
+
+relationship fb517da1-fe05-8267-e479-155b466e141f
+	crossFilteringBehavior: bothDirections
+	fromColumn: stg_pbi_report_details.workspaceid
+	toColumn: stg_pbi_workspace_details.id
+
+relationship 32217af7-605b-3422-115f-66446c4dc5da
+	fromColumn: stg_pbi_report_details.datasetid
+	toColumn: stg_pbi_dataset_details_2.id
+
+relationship 22176acf-bd63-27f4-7905-22f16d20eeee
+	fromColumn: stg_pbi_appusers_metadata.'User Email'
+	toColumn: 'User details'.'User Email'
+
+relationship cf6d63b4-997b-5508-a6ba-ca03df2f906b
+	fromColumn: stg_pbi_workspaceusers_metadata.email
+	toColumn: 'User details'.'User Email'
+
+relationship bb8c18d6-c4c3-17b0-8b08-fca6d780de37
+	fromColumn: stg_pbi_appusers_metadata.'AD Group'
+	toColumn: 'AD Groups'.'AD Group'
+
+relationship 4a9ea761-dcc6-d839-bdca-689a64f7512f
+	fromColumn: stg_pbi_workspaceusers_metadata.'AD Groups'
+	toColumn: 'AD Groups'.'AD Group'
+

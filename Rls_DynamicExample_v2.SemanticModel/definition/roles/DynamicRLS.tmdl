@@ -1,0 +1,47 @@
+role DynamicRLS
+	modelPermission: read
+
+	tablePermission Dim_CostCenter =
+			[CostCenter]
+			IN
+			SELECTCOLUMNS(
+			    FILTER(
+			        'DynamicRoleUsers',
+			        'DynamicRoleUsers'[UserRef] = [User Principle]
+			        &&
+			        'DynamicRoleUsers'[RoleType] = "CostCenter"
+			    ),
+			"DynamicRoleRefs",
+			DynamicRoleUsers[RoleRef]
+			)
+
+	tablePermission Dim_Projects =
+			[Project]
+			IN
+			SELECTCOLUMNS(
+			    FILTER(
+			        'DynamicRoleUsers',
+			        'DynamicRoleUsers'[UserRef] = [User Principle]
+			        &&
+			        'DynamicRoleUsers'[RoleType] = "Project"
+			    ),
+			"DynamicRoleRefs",
+			DynamicRoleUsers[RoleRef]
+			)
+
+	tablePermission Dim_Country =
+			[CountryCode]
+			IN
+			SELECTCOLUMNS(
+			    FILTER(
+			        'DynamicRoleUsers',
+			        'DynamicRoleUsers'[UserRef] = [User Principle]
+			        &&
+			        'DynamicRoleUsers'[RoleType] = "Country"
+			    ),
+			"DynamicRoleRefs",
+			DynamicRoleUsers[RoleRef]
+			)
+
+	annotation PBI_Id = 3b12c1a23f9f4541842027a564d92855
+

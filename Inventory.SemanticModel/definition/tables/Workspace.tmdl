@@ -1,0 +1,96 @@
+table Workspace
+	lineageTag: a70d69b4-7a71-4205-a97e-80f744f65ff4
+	sourceLineageTag: f4c0a337-5d60-440a-9c9a-f28067f989e1
+
+	column 'Workspace name'
+		dataType: string
+		lineageTag: 04d8c648-8223-4356-a179-5f959a04d17c
+		sourceLineageTag: 451af28d-9085-47c7-ba3b-db8a22999601
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Workspace name
+
+		annotation SummarizationSetBy = User
+
+	column 'Workspace type'
+		dataType: string
+		lineageTag: 0fb6f045-d8d2-421f-93c6-cb73990ad98e
+		sourceLineageTag: cac854a8-b6d1-4185-a191-bf2fdd24d03b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Workspace type
+
+		annotation SummarizationSetBy = User
+
+	column 'Workspace Id'
+		dataType: string
+		isNullable: false
+		lineageTag: a770838d-aa1b-4357-92f2-13d13f30d96c
+		sourceLineageTag: 613598ef-d112-4ac0-ad9b-8d3693d87182
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Workspace Id
+
+		annotation SummarizationSetBy = User
+
+	column WorkspaceKeyIndex
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: ece563e1-0a30-4dbd-b968-1ad6d0011386
+		sourceLineageTag: caac69f6-7898-4e84-841f-8429051def2e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: WorkspaceKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column 'Domain Id'
+		dataType: string
+		lineageTag: 9c2a3b66-0d44-4682-af11-2f8b3094cce9
+		sourceLineageTag: 6cc93ee5-90a2-424c-8a6b-6f00d3ddce12
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Domain Id
+
+		annotation SummarizationSetBy = User
+
+	column 'Capacity Id'
+		dataType: string
+		lineageTag: 5ececcbb-cbb4-4a06-bf49-b8c760f65f7c
+		sourceLineageTag: 90dd908f-b656-4c3b-b96f-1b38a5b8f3f9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Capacity Id
+
+		annotation SummarizationSetBy = User
+
+	column CapacityKeyIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e2d92cdc-36bf-49c9-91aa-ee3525bd8448
+		sourceLineageTag: 90213566-3972-4f09-9a93-dc87525f21ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CapacityKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column Url
+		dataType: string
+		lineageTag: 82274ff5-f5f3-43a1-bd0e-552499bd0e25
+		sourceLineageTag: 9446ae15-6d5e-415c-9fad-b3544a6511a8
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Url
+
+		annotation SummarizationSetBy = User
+
+	partition Workspace = entity
+		mode: directQuery
+		source
+			entityName: Workspace
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

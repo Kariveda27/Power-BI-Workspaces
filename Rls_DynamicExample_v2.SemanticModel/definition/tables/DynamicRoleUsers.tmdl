@@ -1,0 +1,69 @@
+table DynamicRoleUsers
+	lineageTag: efeb546c-0a81-43e9-9cce-c3385a498428
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7fe475eb-331d-4ff1-bdc6-ecd612844327
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleIds
+		dataType: int64
+		formatString: 0
+		lineageTag: 2791386f-3f1e-4043-a554-862592e6b88d
+		summarizeBy: sum
+		sourceColumn: RoleIds
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserId
+		dataType: int64
+		formatString: 0
+		lineageTag: ed9e4044-9887-4c40-970c-f52eeb8cfe74
+		summarizeBy: none
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleType
+		dataType: string
+		lineageTag: 0b39abb9-5522-4544-8096-2e26d11d1aed
+		summarizeBy: none
+		sourceColumn: RoleType
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleRef
+		dataType: string
+		lineageTag: 0a0598e4-5578-41a0-84a2-4f4008913306
+		summarizeBy: none
+		sourceColumn: RoleRef
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserRef
+		dataType: string
+		lineageTag: c0f98d2d-5013-4a1b-9f78-5816b9f31ca1
+		summarizeBy: none
+		sourceColumn: UserRef
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DynamicRoleUsers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp_v2.xlsx"), null, true),
+				    DynamicRoleUsers_Sheet = Source{[Item="DynamicRoleUsers",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DynamicRoleUsers_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"RoleIds", Int64.Type}, {"UserId", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,77 @@
+table User
+	lineageTag: febd5a8a-ff54-4399-b230-b51079b74797
+	sourceLineageTag: a7b5b079-e027-4985-9587-e14921d2968c
+
+	column 'Email address'
+		dataType: string
+		lineageTag: 02626977-b52a-48b3-ba52-cf3fa7c5272b
+		sourceLineageTag: 8664d256-767f-4224-9582-9b3afa2c04bc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Email address
+
+		annotation SummarizationSetBy = User
+
+	column 'User (UPN)'
+		dataType: string
+		lineageTag: e835eaec-4cf8-46d0-8f79-931d2d1c7c7c
+		sourceLineageTag: e983511d-8f0b-4b90-913f-cf135f877726
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: User (UPN)
+
+		annotation SummarizationSetBy = User
+
+	column PUID
+		dataType: string
+		isHidden
+		lineageTag: ddef9564-98c2-4c73-baae-6b60c7194bb5
+		sourceLineageTag: a3fca5e9-7210-4d70-a62e-87c568015cbc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PUID
+
+		annotation SummarizationSetBy = User
+
+	column 'User type'
+		dataType: string
+		lineageTag: 4020e56b-a6d4-4a66-953b-26e024f3603e
+		sourceLineageTag: f1d9286d-ace8-4a4c-915e-2794e22f93a6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: User type
+
+		annotation SummarizationSetBy = User
+
+	column 'User Id'
+		dataType: string
+		lineageTag: e2a1d9fe-403e-497a-a7fc-f8a00b496ba5
+		sourceLineageTag: 99d26f64-a254-440e-8478-0adb00eacc89
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: User Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column UserKeyIndex
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: edfbfa69-efd9-4884-9417-4102571dc8c5
+		sourceLineageTag: ca053bd7-0dda-4e49-bc2c-edada4b5d71f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UserKeyIndex
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	partition User = entity
+		mode: directQuery
+		source
+			entityName: User
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

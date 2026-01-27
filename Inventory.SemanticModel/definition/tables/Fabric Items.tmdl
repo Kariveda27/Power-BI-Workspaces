@@ -1,0 +1,171 @@
+table 'Fabric Items'
+	lineageTag: d6f10594-1289-4d19-a8a5-40f484b6842f
+	sourceLineageTag: e7a2b846-fe93-460a-a8c0-7f48249876d6
+
+	column 'Item name'
+		dataType: string
+		lineageTag: a95217b1-0137-442c-866b-fc3a904bfcb3
+		sourceLineageTag: b4116ab8-e137-4211-a0f5-512a81cf0a91
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Item name
+
+		annotation SummarizationSetBy = User
+
+	column 'Item Id'
+		dataType: string
+		lineageTag: 9e9f94b1-8e03-4705-ab24-d4c1b433f15d
+		sourceLineageTag: fd3cd564-3581-430f-87bb-768f73cc620e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Item Id
+
+		annotation SummarizationSetBy = User
+
+	column 'Item type'
+		dataType: string
+		lineageTag: b5ef5d4b-04b9-4685-a395-27081dd89acf
+		sourceLineageTag: d426d4ec-1d49-476e-a0cb-3b1d35dde98d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Item type
+
+		annotation SummarizationSetBy = User
+
+	column 'Item sub type'
+		dataType: string
+		lineageTag: 5937ac14-910a-4aaa-b5bd-c6d45cb87870
+		sourceLineageTag: 12bd0843-3144-4bc1-b14c-facfcf40f7aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Item sub type
+
+		annotation SummarizationSetBy = User
+
+	column 'Created by user Id'
+		dataType: string
+		lineageTag: a941a91e-2372-448a-927d-8966c99a22e2
+		sourceLineageTag: 775bac65-7fba-4e8d-8d51-6488763d74c6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created by user Id
+
+		annotation SummarizationSetBy = User
+
+	column 'Modified by user Id'
+		dataType: string
+		lineageTag: 607fdf2e-05df-466c-b940-6a865894a3fa
+		sourceLineageTag: 48c15a2a-e5c0-4cee-b236-5b31b6aab4be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Modified by user Id
+
+		annotation SummarizationSetBy = User
+
+	column IndexKey
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: 31f7de9c-c69c-43ce-b032-eae062afee42
+		sourceLineageTag: d1f13686-3ed4-4401-b5f6-0e4c52584a34
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IndexKey
+
+		annotation SummarizationSetBy = User
+
+	column 'Workspace Id'
+		dataType: string
+		lineageTag: afbe84bf-af28-4daf-ab41-426f77e70c98
+		sourceLineageTag: c0d45beb-b8de-49c8-bb03-db3434ddce1f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Workspace Id
+
+		annotation SummarizationSetBy = User
+
+	column Endorsement
+		dataType: string
+		lineageTag: 15f5d508-8cd9-40dc-80fb-4d2c4db243ec
+		sourceLineageTag: ef6d4c7d-6a48-4454-98ce-73d4497c67b2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Endorsement
+
+		annotation SummarizationSetBy = User
+
+	column 'Sensitivity label'
+		dataType: string
+		lineageTag: 2171dfd2-b6ca-4f0f-9c91-10b21506df33
+		sourceLineageTag: eb3ce23f-fedc-4a30-a1f0-484aa17035c4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Sensitivity label
+
+		annotation SummarizationSetBy = User
+
+	column 'MIP label Id'
+		dataType: string
+		lineageTag: fc10e683-13b4-4406-a9f9-2395459f0fa6
+		sourceLineageTag: 5964968d-36fc-4f58-81e9-aa94baeefcbc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MIP label Id
+
+		annotation SummarizationSetBy = User
+
+	column 'Is deleted'
+		dataType: string
+		lineageTag: d1b67c45-b961-4bc4-a9b1-a1b3fa7b9a1b
+		sourceLineageTag: 788e7a91-1120-4cd8-bcaa-2a9b47463864
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Is deleted
+
+		annotation SummarizationSetBy = User
+
+	column 'Activity status'
+		dataType: string
+		lineageTag: fc067b70-654a-42d4-b77a-db2c53bab9c8
+		sourceLineageTag: 005dc491-a4c9-4a4a-a80e-12bc450247cd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Activity status
+
+		annotation SummarizationSetBy = User
+
+	column 'User (UPN)'
+		dataType: string
+		lineageTag: 147a5cb1-473c-49e0-86ea-4c12828937fe
+		sourceLineageTag: 0d5b66d8-081d-4f7d-8ee2-fce32772fe50
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: User (UPN)
+
+		annotation SummarizationSetBy = User
+
+	column Url
+		dataType: string
+		lineageTag: 30291366-11e0-4da6-857d-5b4753e51583
+		sourceLineageTag: e3ddc059-e7d4-469a-8e3e-de0a4b02a3fa
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Url
+
+		annotation SummarizationSetBy = User
+
+	column 'Created by User Name' = CALCULATE(related),USERELATIONSHIP('Fabric Items'[Created by user Id],User[User Id])
+		lineageTag: 6f12527a-55ea-4fe0-b74d-43e032e390e0
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fabric Items' = entity
+		mode: directQuery
+		source
+			entityName: Fabric Items
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

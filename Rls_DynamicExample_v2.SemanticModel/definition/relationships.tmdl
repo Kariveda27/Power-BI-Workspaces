@@ -1,0 +1,20 @@
+relationship AutoDetected_b19b2039-b731-42de-8a3c-3631dc74e490
+	fromColumn: Fact_Expenses.CostCenter
+	toColumn: Dim_CostCenter.CostCenter
+
+relationship 0b5d1d08-bfca-459f-af55-42bacc401ff7
+	fromColumn: DynamicRoleUsers.UserId
+	toColumn: DynamicUsers.Id
+
+relationship AutoDetected_46b7007d-5829-4f10-89ba-6707ad861857
+	fromColumn: DynamicRoleUsers.RoleRef
+	toColumn: DynamicRoles.RoleRef
+
+relationship AutoDetected_d7fb001d-0011-4fd7-ae0c-7ec2ee40f312
+	fromColumn: Fact_Expenses.ProjectCode
+	toColumn: Dim_Projects.Project
+
+relationship 9f3ddc49-cee1-1752-11a8-ea818fa8ce1f
+	fromColumn: Fact_Expenses.Country
+	toColumn: Dim_Country.CountryCode
+

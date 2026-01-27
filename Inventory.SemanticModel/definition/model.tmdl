@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectQuery to AS - Feature Usage and Adoption","WorkspacesM"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.143.1204.0 (25.05)+23c84aace645781dd62b8a26eb0418c7e6a84b72
+
+ref table 'Refresh Stats'
+ref table Date
+ref table Changelog
+ref table _Measures
+ref table Workspace
+ref table Audit
+ref table Capacity
+ref table User
+ref table 'Fabric Items'
+ref table WorkspacesM
+ref table 'WS - Parameter'
+
+ref cultureInfo en-US
+

@@ -1,0 +1,86 @@
+table 'Measure Table'
+	lineageTag: e7d4a1d5-b4cb-4d54-b6ac-7ed133e67683
+
+	measure 'User Principle' = USERPRINCIPALNAME()
+		lineageTag: 2bb197ef-15cf-4264-b817-0413e5b23fa5
+
+	measure UserId =
+			
+			LOOKUPVALUE(DynamicUsers[Id],DynamicUsers[User],USERPRINCIPALNAME())
+		formatString: 0
+		lineageTag: 0faadeb7-b973-4a47-930b-461f00e529fa
+
+	measure 'RoleIds For User Principal' = ```
+			
+			    CONCATENATEX(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                'DynamicRoleUsers',
+			                'DynamicRoleUsers'[UserId] = LOOKUPVALUE(DynamicUsers[Id],DynamicUsers[User],USERPRINCIPALNAME())
+			            ),
+			            "DynamicRoleId",
+			            'DynamicRoleUsers'[RoleIds]
+			        ),
+			        [DynamicRoleId],
+			        ","
+			    )
+			
+			```
+		lineageTag: ee6a8fdc-4718-4482-84ab-f4f367e671f1
+
+	measure 'RoleIds For User Principal Cost Center only' = ```
+			
+			VAR CurrentUserId =
+			    LOOKUPVALUE(
+			        DynamicUsers[Id],
+			        DynamicUsers[User],
+			        USERPRINCIPALNAME()
+			    )
+			
+			VAR CostCenterRoleIds =
+			    SELECTCOLUMNS(
+			        FILTER(
+			            DynamicRoles,
+			            DynamicRoles[RoleType] = "CostCenter"
+			        ),
+			        "RoleId", DynamicRoles[Id]
+			    )
+			
+			VAR FilteredRoles =
+			    FILTER(
+			        'DynamicRoleUsers',
+			        'DynamicRoleUsers'[UserId] = CurrentUserId &&
+			        'DynamicRoleUsers'[RoleIds] IN CostCenterRoleIds
+			    )
+			
+			RETURN
+			CONCATENATEX(
+			    SELECTCOLUMNS(
+			        FilteredRoles,
+			        "DynamicRoleId", 'DynamicRoleUsers'[RoleIds]
+			    ),
+			    [DynamicRoleId],
+			    ","
+			)
+			
+			
+			```
+		lineageTag: ade25e55-4b64-4599-9aea-b47e7dbc6362
+
+	column Column
+		formatString: 0
+		lineageTag: 0b62f507-7e8e-405b-936a-607f2e9b3c3e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measure Table' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = effd8d2e25cf42789191806221c2b526
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

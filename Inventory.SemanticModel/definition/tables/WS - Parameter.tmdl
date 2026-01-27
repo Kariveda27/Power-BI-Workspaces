@@ -1,0 +1,51 @@
+table 'WS - Parameter'
+	lineageTag: 1089a8f3-f293-42a5-b741-9e1c3ee37c8d
+
+	column 'WS - Parameter'
+		lineageTag: 1314033f-47c3-4292-a274-3e9e09bb6b29
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'WS - Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'WS - Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'WS - Parameter Fields'
+		isHidden
+		lineageTag: 5e14976e-f33a-40f0-88d6-a90871542fb3
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'WS - Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'WS - Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: daee7f90-5c6e-4417-9553-7bdf89244bcf
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'WS - Parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("Users", NAMEOF('_Measures'[Active users]), 0),
+				    ("Interactions", NAMEOF('_Measures'[Activities]), 1),
+				    ("Items", NAMEOF('_Measures'[Items]), 2),
+				    ("Reports", NAMEOF('_Measures'[Reports]), 3),
+				    ("Semantic Models", NAMEOF('_Measures'[Semantic Models]), 4)
+				}
+
+	annotation PBI_Id = da19418990724af4a4f1fb01bc1c41e3
+

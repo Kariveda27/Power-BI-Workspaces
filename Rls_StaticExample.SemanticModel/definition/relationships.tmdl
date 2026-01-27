@@ -1,0 +1,4 @@
+relationship AutoDetected_b19b2039-b731-42de-8a3c-3631dc74e490
+	fromColumn: Expenses.CostCenter
+	toColumn: CostCenter.CostCenter
+

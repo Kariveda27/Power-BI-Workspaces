@@ -1,0 +1,43 @@
+table Dim_Projects
+	lineageTag: dc16e5fa-4732-4dc9-9fac-2c2f60caaf14
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 320e9b71-0954-41ce-b3dd-06a56b9bde28
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project
+		dataType: string
+		lineageTag: 30029445-1f84-43da-b5d7-67f9cb6e282f
+		summarizeBy: none
+		sourceColumn: Project
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 1fb969dc-383f-4856-82f3-699bc47a595c
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Projects = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp_v2.xlsx"), null, true),
+				    Dim_Projects_Sheet = Source{[Item="Dim_Projects",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Projects_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"Project", type text}, {"Description", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

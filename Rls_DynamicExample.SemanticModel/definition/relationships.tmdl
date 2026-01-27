@@ -1,0 +1,8 @@
+relationship AutoDetected_b19b2039-b731-42de-8a3c-3631dc74e490
+	fromColumn: Fact_Expenses.CostCenter
+	toColumn: Dim_CostCenter.CostCenter
+
+relationship 166f70ac-daf7-c366-6718-533f94db28a1
+	fromColumn: CostCenterUsers.CostCenter
+	toColumn: Dim_CostCenter.CostCenter
+

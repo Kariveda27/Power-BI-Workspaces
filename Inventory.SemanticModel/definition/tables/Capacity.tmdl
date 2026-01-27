@@ -1,0 +1,53 @@
+table Capacity
+	lineageTag: 857d54f7-bd54-4ee1-b5a7-3dc6f61662e2
+	sourceLineageTag: 275ecaa6-e964-4ed5-9b5b-c8c2db3dd81c
+
+	column 'Capacity name'
+		dataType: string
+		lineageTag: 4358f13f-7767-4c09-b13c-1295de348177
+		sourceLineageTag: 0837463a-04a8-417b-a815-99c4a4111c16
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Capacity name
+
+		annotation SummarizationSetBy = User
+
+	column 'Capacity SKU'
+		dataType: string
+		lineageTag: 55c12146-f11e-46ea-819a-e012c636782f
+		sourceLineageTag: cce444a9-372f-438a-8511-2e7ca84ffe19
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Capacity SKU
+
+		annotation SummarizationSetBy = User
+
+	column 'Capacity Id'
+		dataType: string
+		lineageTag: 4d2d6d1c-86c8-4197-8990-e612e5c0bc27
+		sourceLineageTag: 8a767d32-c021-4f3e-aeaa-87a69b29142a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Capacity Id
+
+		annotation SummarizationSetBy = User
+
+	column CapacityKeyIndex
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		lineageTag: b324b91b-0198-4032-b01c-a4d53a925b9b
+		sourceLineageTag: 08a54ffb-c4a7-4852-a123-545c500e65b6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CapacityKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	partition Capacity = entity
+		mode: directQuery
+		source
+			entityName: Capacity
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

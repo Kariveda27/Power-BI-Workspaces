@@ -1,0 +1,180 @@
+{
+  "config": "{\"version\":\"5.67\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU10\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"3.0.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU10",
+            "path": "BaseThemes/CY25SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "06149301b44ba85f7181",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"082120a4a9e92128166b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":13.96551724137931,\"y\":453.10344827586204,\"z\":1007,\"width\":432.9310344827586,\"height\":238.9655172413793,\"tabOrder\":1007}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dim_Country.CountryCode\"},{\"queryRef\":\"Dim_Country.Country\"},{\"queryRef\":\"Sum(Expenses.Expense)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Fact_Expenses\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Dim_Country\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Expense\"}},\"Function\":0},\"Name\":\"Sum(Expenses.Expense)\",\"NativeReferenceName\":\"Sum of Expense\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"CountryCode\"},\"Name\":\"Dim_Country.CountryCode\",\"NativeReferenceName\":\"CountryCode\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Country\"},\"Name\":\"Dim_Country.Country\",\"NativeReferenceName\":\"Country\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{}}}",
+          "filters": "[]",
+          "height": 238.97,
+          "width": 432.93,
+          "x": 13.97,
+          "y": 453.10,
+          "z": 1007.00
+        },
+        {
+          "config": "{\"name\":\"2503e4ea44af796c36b5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":815.6136820925553,\"y\":46.35814889336016,\"z\":1001,\"width\":311.4688128772636,\"height\":139.79879275653923,\"tabOrder\":1001}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.User Principle\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"User Principle\"},\"Name\":\"Measure Table.User Principle\",\"NativeReferenceName\":\"User Principle\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 139.80,
+          "width": 311.47,
+          "x": 815.61,
+          "y": 46.36,
+          "z": 1001.00
+        },
+        {
+          "config": "{\"name\":\"3e51200e48cc8115ea3a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":869.2152917505031,\"y\":186.1569416498994,\"z\":1003,\"width\":345.51307847082495,\"height\":68.81287726358148,\"tabOrder\":1003}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.RoleIds\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal\"},\"Name\":\"Measure Table.RoleIds\",\"NativeReferenceName\":\"RoleIds For User Principal\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 68.81,
+          "width": 345.51,
+          "x": 869.22,
+          "y": 186.16,
+          "z": 1003.00
+        },
+        {
+          "config": "{\"name\":\"6526795276682a38260e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":476.37931034482756,\"y\":46.55172413793103,\"z\":1000,\"width\":320.4310344827586,\"height\":529.1379310344827,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"CountNonNull(Expenses.Id)\"},{\"queryRef\":\"Expenses.CostCenter\"},{\"queryRef\":\"Sum(Expenses.Expense)\"},{\"queryRef\":\"Fact_Expenses.Country\"},{\"queryRef\":\"Fact_Expenses.ProjectCode\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Fact_Expenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Expense\"},\"Name\":\"Sum(Expenses.Expense)\",\"NativeReferenceName\":\"Expense\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"CostCenter\"},\"Name\":\"Expenses.CostCenter\",\"NativeReferenceName\":\"CostCenter\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Id\"},\"Name\":\"CountNonNull(Expenses.Id)\",\"NativeReferenceName\":\"Id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Country\"},\"Name\":\"Fact_Expenses.Country\",\"NativeReferenceName\":\"Country\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"ProjectCode\"},\"Name\":\"Fact_Expenses.ProjectCode\",\"NativeReferenceName\":\"ProjectCode\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Id\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"90.39040378523597D\"}}}},\"selector\":{\"metadata\":\"Expenses.CostCenter\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"55.154487592322944D\"}}}},\"selector\":{\"metadata\":\"CountNonNull(Expenses.Id)\"}}]}}}",
+          "filters": "[]",
+          "height": 529.14,
+          "width": 320.43,
+          "x": 476.38,
+          "y": 46.55,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"6c85f391af5bdb557150\",\"layouts\":[{\"id\":0,\"position\":{\"x\":850.3448275862069,\"y\":370.0862068965517,\"z\":1004,\"width\":429.8275862068965,\"height\":269.2241379310345,\"tabOrder\":1004}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"DynamicUsers.User\",\"active\":true},{\"queryRef\":\"DynamicRoleUsers.RoleType\",\"active\":true},{\"queryRef\":\"DynamicRoleUsers.RoleRef\",\"active\":true}],\"Values\":[{\"queryRef\":\"CountNonNull(DynamicRoleUsers.RoleIds)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"DynamicUsers\",\"Type\":0},{\"Name\":\"d2\",\"Entity\":\"DynamicRoleUsers\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"User\"},\"Name\":\"DynamicUsers.User\",\"NativeReferenceName\":\"User\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"RoleIds\"}},\"Function\":5},\"Name\":\"CountNonNull(DynamicRoleUsers.RoleIds)\",\"NativeReferenceName\":\"Count of RoleIds\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"RoleType\"},\"Name\":\"DynamicRoleUsers.RoleType\",\"NativeReferenceName\":\"RoleType\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"RoleRef\"},\"Name\":\"DynamicRoleUsers.RoleRef\",\"NativeReferenceName\":\"RoleRef\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"User\"}}}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"DynamicUsers.User\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DynamicUsers\"}},\"Property\":\"User\"}}],\"isPinned\":true},{\"queryRefs\":[\"DynamicRoleUsers.RoleType\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DynamicRoleUsers\"}},\"Property\":\"RoleType\"}}],\"isPinned\":true},{\"queryRefs\":[\"DynamicRoleUsers.RoleRef\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'bvandenhonert@jazzpharma.com'\"}}],\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'CostCenter'\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"'Project'\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"'Country'\"}}],\"isToggled\":true}]},{\"identityValues\":[{\"Literal\":{\"Value\":\"'nwilliams2@jazzpharma.com'\"}}],\"isToggled\":true,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'CostCenter'\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"'Project'\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"'Country'\"}}],\"isToggled\":true}]}]}}],\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"157.6961069659623D\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DynamicRoles\"}},\"Property\":\"RoleType\"}},\"Right\":{\"Literal\":{\"Value\":\"null\"}}}}}]}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"239.6723929160677D\"}}}},\"selector\":{\"metadata\":\"DynamicUsers.User\"}}]}}}",
+          "filters": "[]",
+          "height": 269.22,
+          "width": 429.83,
+          "x": 850.34,
+          "y": 370.09,
+          "z": 1004.00
+        },
+        {
+          "config": "{\"name\":\"915fa4a7789d16d8a6b3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":13.96551724137931,\"y\":290.94827586206895,\"z\":1006,\"width\":427.5,\"height\":162.15517241379308,\"tabOrder\":1006}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Dim_Projects.Project\"},{\"queryRef\":\"Dim_Projects.Description\"},{\"queryRef\":\"Sum(Expenses.Expense)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Fact_Expenses\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Dim_Projects\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Expense\"}},\"Function\":0},\"Name\":\"Sum(Expenses.Expense)\",\"NativeReferenceName\":\"Sum of Expense\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Project\"},\"Name\":\"Dim_Projects.Project\",\"NativeReferenceName\":\"Project\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Description\"},\"Name\":\"Dim_Projects.Description\",\"NativeReferenceName\":\"Description\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{}}}",
+          "filters": "[]",
+          "height": 162.16,
+          "width": 427.50,
+          "x": 13.97,
+          "y": 290.95,
+          "z": 1006.00
+        },
+        {
+          "config": "{\"name\":\"b4c9465e7e45418ca0c0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":8.534482758620689,\"y\":46.55172413793103,\"z\":0,\"width\":432.9310344827586,\"height\":229.65517241379308,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"CostCenter.CostCenter\"},{\"queryRef\":\"CostCenter.Name\"},{\"queryRef\":\"Sum(Expenses.Expense)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Dim_CostCenter\",\"Type\":0},{\"Name\":\"e\",\"Entity\":\"Fact_Expenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CostCenter\"},\"Name\":\"CostCenter.CostCenter\",\"NativeReferenceName\":\"CostCenter\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Name\"},\"Name\":\"CostCenter.Name\",\"NativeReferenceName\":\"Name\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Expense\"}},\"Function\":0},\"Name\":\"Sum(Expenses.Expense)\",\"NativeReferenceName\":\"Sum of Expense\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CostCenter\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"225.17241431563986D\"}}}},\"selector\":{\"metadata\":\"CostCenter.Name\"}}]}}}",
+          "filters": "[]",
+          "height": 229.66,
+          "width": 432.93,
+          "x": 8.53,
+          "y": 46.55,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"bfeffb8ce974a566cbaf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":869.2152917505031,\"y\":283.943661971831,\"z\":1005,\"width\":345.51307847082495,\"height\":68.81287726358148,\"tabOrder\":1005}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.RoleIds For User Principal Cost Center only\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal Cost Center only\"},\"Name\":\"Measure Table.RoleIds For User Principal Cost Center only\",\"NativeReferenceName\":\"RoleIds For User Principal Cost Center only\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 68.81,
+          "width": 345.51,
+          "x": 869.22,
+          "y": 283.94,
+          "z": 1005.00
+        },
+        {
+          "config": "{\"name\":\"dd19e299e35efef8ec20\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1127.082494969819,\"y\":46.35814889336016,\"z\":1002,\"width\":102.85714285714286,\"height\":139.79879275653923,\"tabOrder\":1002}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.ProfileIds\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"UserId\"},\"Name\":\"Measure Table.ProfileIds\",\"NativeReferenceName\":\"UserId\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"UserId\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 139.80,
+          "width": 102.86,
+          "x": 1127.08,
+          "y": 46.36,
+          "z": 1002.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Duplicate of Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "688dffa3ec67579f8127",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3a802035586133153ab6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1127.082494969819,\"y\":46.35814889336016,\"z\":3000,\"width\":102.85714285714286,\"height\":139.79879275653923,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.ProfileIds\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"UserId\"},\"Name\":\"Measure Table.ProfileIds\",\"NativeReferenceName\":\"UserId\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"UserId\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 139.80,
+          "width": 102.86,
+          "x": 1127.08,
+          "y": 46.36,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"4bf3f179fad00faf1220\",\"layouts\":[{\"id\":0,\"position\":{\"x\":815.6136820925553,\"y\":46.35814889336016,\"z\":2000,\"width\":311.4688128772636,\"height\":139.79879275653923,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.User Principle\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"User Principle\"},\"Name\":\"Measure Table.User Principle\",\"NativeReferenceName\":\"User Principle\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 139.80,
+          "width": 311.47,
+          "x": 815.61,
+          "y": 46.36,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"6fdc6a83f5d1f1db0839\",\"layouts\":[{\"id\":0,\"position\":{\"x\":869.2152917505031,\"y\":186.1569416498994,\"z\":4000,\"width\":345.51307847082495,\"height\":68.81287726358148,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.RoleIds\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal\"},\"Name\":\"Measure Table.RoleIds\",\"NativeReferenceName\":\"RoleIds For User Principal\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 68.81,
+          "width": 345.51,
+          "x": 869.22,
+          "y": 186.16,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"78f26ac1273b46583506\",\"layouts\":[{\"id\":0,\"position\":{\"x\":869.2152917505031,\"y\":425.9154929577465,\"z\":5000,\"width\":378.1086519114688,\"height\":125.3118712273642,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"DynamicUsers.User\",\"active\":true}],\"Values\":[{\"queryRef\":\"CountNonNull(DynamicRoleUsers.RoleIds)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"DynamicUsers\",\"Type\":0},{\"Name\":\"d2\",\"Entity\":\"DynamicRoleUsers\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"User\"},\"Name\":\"DynamicUsers.User\",\"NativeReferenceName\":\"User\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d2\"}},\"Property\":\"RoleIds\"}},\"Function\":5},\"Name\":\"CountNonNull(DynamicRoleUsers.RoleIds)\",\"NativeReferenceName\":\"Count of RoleIds\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"User\"}}}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"DynamicUsers.User\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DynamicUsers\"}},\"Property\":\"User\"}}],\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'bvandenhonert@jazzpharma.com'\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"'nwilliams2@jazzpharma.com'\"}}],\"isToggled\":true}]}}],\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"157.6961069659623D\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DynamicRoles\"}},\"Property\":\"RoleType\"}},\"Right\":{\"Literal\":{\"Value\":\"null\"}}}}}]}}]}}}",
+          "filters": "[]",
+          "height": 125.31,
+          "width": 378.11,
+          "x": 869.22,
+          "y": 425.92,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"924c0ba76cc3822667fe\",\"layouts\":[{\"id\":0,\"position\":{\"x\":869.2152917505031,\"y\":283.943661971831,\"z\":6000,\"width\":345.51307847082495,\"height\":68.81287726358148,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.RoleIds For User Principal Cost Center only\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal Cost Center only\"},\"Name\":\"Measure Table.RoleIds For User Principal Cost Center only\",\"NativeReferenceName\":\"RoleIds For User Principal Cost Center only\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"RoleIds For User Principal\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 68.81,
+          "width": 345.51,
+          "x": 869.22,
+          "y": 283.94,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"f1ed7cf6e600bacb8097\",\"layouts\":[{\"id\":0,\"position\":{\"x\":5.79476861167002,\"y\":41.287726358148895,\"z\":6001,\"width\":487.48490945674047,\"height\":213.682092555332,\"tabOrder\":6001}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DynamicRoles.Id\"},{\"queryRef\":\"DynamicRoles.RoleId\"},{\"queryRef\":\"DynamicRoles.RoleName\"},{\"queryRef\":\"DynamicRoles.RoleType\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DynamicRoles\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"RoleId\"},\"Name\":\"DynamicRoles.RoleId\",\"NativeReferenceName\":\"RoleId\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"RoleName\"},\"Name\":\"DynamicRoles.RoleName\",\"NativeReferenceName\":\"RoleName\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"RoleType\"},\"Name\":\"DynamicRoles.RoleType\",\"NativeReferenceName\":\"RoleType\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Id\"},\"Name\":\"DynamicRoles.Id\",\"NativeReferenceName\":\"Id\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 213.68,
+          "width": 487.48,
+          "x": 5.79,
+          "y": 41.29,
+          "z": 6001.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

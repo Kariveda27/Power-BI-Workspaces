@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Dim_CostCenter","Fact_Expenses","CostCenterUsers","EntraGroupBash","EntraGroup"]
+
+ref table Dim_CostCenter
+ref table Fact_Expenses
+ref table 'Measure Table'
+ref table CostCenterUsers
+ref table EntraGroupBash
+ref table EntraGroup
+
+ref role CostCenter
+
+ref cultureInfo en-US
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Power BI Inventory Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1612313e-870d-a35f-4ccf-8f9c9651457c"
+  }
+}

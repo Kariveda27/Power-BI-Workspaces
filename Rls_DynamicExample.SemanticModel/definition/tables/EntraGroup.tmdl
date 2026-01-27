@@ -1,0 +1,84 @@
+table EntraGroup
+	lineageTag: 8ff9144a-c9aa-4bba-898a-7e0ae0d98575
+
+	column id
+		dataType: string
+		lineageTag: 42fb52aa-b89f-4e9b-b530-daeb70bd3ee3
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 68819a62-4c7f-475c-a350-42c1541649b2
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column mail
+		dataType: string
+		lineageTag: db5973ae-7a17-406e-bc33-e853108c3bdc
+		summarizeBy: none
+		sourceColumn: mail
+
+		annotation SummarizationSetBy = Automatic
+
+	column userPrincipalName
+		dataType: string
+		lineageTag: 0e4fda3d-0d89-4981-9e48-cfa91f023ad2
+		summarizeBy: none
+		sourceColumn: userPrincipalName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition EntraGroup = m
+		mode: import
+		source = ```
+				let
+				    // 🔧 Replace with your group ID
+				    groupId = "33be3d4b-93bc-40d3-b487-3f79d629243d",
+				
+				    // Base endpoint – get only user members
+				    baseUrl = "https://graph.microsoft.com/v1.0/groups/" & groupId & "/members/microsoft.graph.user?$select=id,displayName,mail,userPrincipalName",
+				
+				    // Function to fetch all pages
+				    GetMembers = (url as text) =>
+				        let
+				            // Retrieve JSON from Graph
+				            raw = Json.Document(Web.Contents(url)),
+				            
+				            // Extract 'value' array safely
+				            current = if Record.HasFields(raw, "value") then raw[value] else {},
+				
+				            // Check if there’s another page
+				            nextLink = if Record.HasFields(raw, "@odata.nextLink") then raw[#"@odata.nextLink"] else null,
+				
+				            // Recursively call if more pages exist
+				            more =
+				                if nextLink <> null and nextLink <> ""
+				                then @GetMembers(nextLink)
+				                else {},
+				
+				            // Combine pages
+				            combined = List.Combine({ current, more })
+				        in
+				            combined,
+				
+				    // Get all members
+				    allMembers = GetMembers(baseUrl),
+				
+				    // Convert to table
+				    asTable = Table.FromList(allMembers, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				
+				    // Expand to columns
+				    expanded = Table.ExpandRecordColumn(asTable, "Column1", {"id", "displayName", "mail", "userPrincipalName"}, {"id", "displayName", "mail", "userPrincipalName"})
+				in
+				    expanded
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

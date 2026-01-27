@@ -1,0 +1,51 @@
+table DynamicRoles
+	lineageTag: 326ccc58-7e75-4735-a0df-8b7f6fee7957
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 96493fe9-ef2e-4664-b87b-eb8b30f2d8ba
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleType
+		dataType: string
+		lineageTag: 51c95c41-09ba-426d-a8b1-e733d77427bc
+		summarizeBy: none
+		sourceColumn: RoleType
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleName
+		dataType: string
+		lineageTag: 6da3cdbf-5fad-484c-8370-cfc7766ab7da
+		summarizeBy: none
+		sourceColumn: RoleName
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleRef
+		dataType: string
+		lineageTag: 64b4dddd-5d5d-419c-afeb-977d212dee13
+		summarizeBy: none
+		sourceColumn: RoleRef
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DynamicRoles = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp_v2.xlsx"), null, true),
+				    DynamicRoles_Sheet = Source{[Item="DynamicRoles",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DynamicRoles_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"RoleType", type text}, {"RoleRef", type text}, {"RoleName", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

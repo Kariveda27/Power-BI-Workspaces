@@ -1,0 +1,7 @@
+role '101 Cost Centers'
+	modelPermission: read
+
+	tablePermission CostCenter = [CostCenter] IN {"101-003","101-004","101-005"}
+
+	annotation PBI_Id = 6b755e605b894a4c89a426236d7d9e85
+

@@ -1,0 +1,186 @@
+table Audit
+	lineageTag: 90b3574b-475f-4c44-956a-4320a3a59f38
+	sourceLineageTag: cf3161cf-3838-4a8a-85ac-ed56484dc579
+
+	column Incremental_Refresh_DateTime_Column
+		dataType: string
+		isHidden
+		lineageTag: 61f62606-85e1-4932-a699-157263104203
+		sourceLineageTag: 85c2c04a-721a-4850-bfec-a5598b4002b6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Incremental_Refresh_DateTime_Column
+
+		annotation SummarizationSetBy = User
+
+	column 'Creation time'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 065a4e23-76a1-4b28-81d2-73459a1cc5b1
+		sourceLineageTag: 35f0067a-0172-4ad8-8e02-9282aa7efee2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Creation time
+
+		annotation SummarizationSetBy = User
+
+	column CapacityKeyIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bb202e21-0e8e-44ee-8238-2789ef8d011c
+		sourceLineageTag: 022aff35-4c1d-42d6-a397-093e220cfd85
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CapacityKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column 'Consumption method'
+		dataType: string
+		lineageTag: a610a015-cf9e-4958-9dab-df960423e49c
+		sourceLineageTag: 14006d06-59cc-4128-8926-e09f9420fb31
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Consumption method
+
+		annotation SummarizationSetBy = User
+
+	column DatasetKeyIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ae58a497-70fa-460a-87e8-8443075c45a2
+		sourceLineageTag: 8c5a942d-86ee-4ed7-b1ba-9d40fcab0ef3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: DatasetKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column ObjectKeyIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: 31de904c-ebb9-4fbb-af45-da6bf5d1e36c
+		sourceLineageTag: e44c980c-a047-4982-af9f-8cee6200fb02
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ObjectKeyIndex
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Operation
+		dataType: string
+		lineageTag: c9448b0d-ebdc-4e58-80ac-dea98a9edf81
+		sourceLineageTag: 0698081f-15ad-42f8-87bd-e19e712adf33
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Operation
+
+		annotation SummarizationSetBy = User
+
+	column ReportKeyIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: f9ec8216-df74-4cac-aa12-e978ec78d5d0
+		sourceLineageTag: c4f51903-eb79-4e1c-a2b0-af8d7a02a11a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: ReportKeyIndex
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column UserKeyIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 57f2049d-829c-42b4-b113-0f395bb552db
+		sourceLineageTag: 13ce8dfb-7327-4d07-8a69-9d863287f962
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: UserKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column WorkspaceKeyIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: 16d3f9a9-cd43-4449-97ff-105d6f79e7ca
+		sourceLineageTag: 3e7d2900-1b3e-4027-bd09-4cbb09d0a095
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: WorkspaceKeyIndex
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column AppKeyIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9f4466f5-9835-429f-a8a1-55f43c0a5e28
+		sourceLineageTag: a76ff713-8bfd-4ffb-b669-6c1712f66fe2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: AppKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column DashboardKeyIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c2bba7b6-b518-45a2-b9a5-6667c2eaba0f
+		sourceLineageTag: 2ed30c49-8f1d-49d0-b2b9-6d75308f9ae9
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: DashboardKeyIndex
+
+		annotation SummarizationSetBy = User
+
+	column 'Distribution method'
+		dataType: string
+		lineageTag: 892877db-699f-4d69-8856-03b86baf88cd
+		sourceLineageTag: eebe6a8f-2f3f-4551-83ad-3ab3a258c68a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Distribution method
+
+		annotation SummarizationSetBy = User
+
+	column 'Creation date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 9f0054d7-a442-453d-be4b-e344f7df7c61
+		sourceLineageTag: c12bd4ca-6232-4c4f-b283-9b6f9d4c5678
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Creation date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column 'Result status'
+		dataType: string
+		lineageTag: 18eda87b-fda9-493b-b46e-e2c0f48907a6
+		sourceLineageTag: 6fc206ff-c6fe-42f2-b725-e9593f5bf7ce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Result status
+
+		annotation SummarizationSetBy = User
+
+	partition Audit = entity
+		mode: directQuery
+		source
+			entityName: Audit
+			expressionSource: 'DirectQuery to AS - Feature Usage and Adoption'
+

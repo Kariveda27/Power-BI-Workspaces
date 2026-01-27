@@ -1,0 +1,58 @@
+table Expenses
+	lineageTag: 7fcea3f4-c8ef-46a6-84d9-0d7365d79f43
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 51eb5be9-296b-471c-89b3-6d9cc6f743f7
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Expense
+		dataType: int64
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 48813e03-7191-4cdf-9dc1-96aa39db6970
+		summarizeBy: sum
+		sourceColumn: Expense
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 083dd204-2eda-4ffc-97ee-e3f9c7520748
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCenter
+		dataType: string
+		lineageTag: 8a27951b-5e25-4df8-a4a0-9ceafeece5b7
+		summarizeBy: none
+		sourceColumn: CostCenter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 8c76229d-049b-4286-adef-70310f49867c
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Expenses = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Users\nwilliams2\OneDrive - Jazzpharma.com\Desktop\RlsMockUp.xlsx"), null, true),
+				    Expenses_Sheet = Source{[Item="Expenses",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Expenses_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Id", Int64.Type}, {"Expense", Int64.Type}, {"Description", type any}, {"CostCenter", type text}, {"Country", type any}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

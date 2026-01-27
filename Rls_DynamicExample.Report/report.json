@@ -1,0 +1,60 @@
+{
+  "config": "{\"version\":\"5.67\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU10\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"3.0.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU10",
+            "path": "BaseThemes/CY25SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "06149301b44ba85f7181",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"2503e4ea44af796c36b5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":910.8977035490606,\"y\":79.66597077244259,\"z\":1001,\"width\":346.47181628392485,\"height\":192.4008350730689,\"tabOrder\":1001}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Measure Table.User Principle\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"User Principle\"},\"Name\":\"Measure Table.User Principle\",\"NativeReferenceName\":\"User Principle\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"19D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 192.40,
+          "width": 346.47,
+          "x": 910.90,
+          "y": 79.67,
+          "z": 1001.00
+        },
+        {
+          "config": "{\"name\":\"6526795276682a38260e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":557.6617954070981,\"y\":66.13778705636743,\"z\":1000,\"width\":312.65135699373695,\"height\":529.1022964509394,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"CountNonNull(Expenses.Id)\"},{\"queryRef\":\"Expenses.CostCenter\"},{\"queryRef\":\"Sum(Expenses.Expense)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Fact_Expenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Expense\"},\"Name\":\"Sum(Expenses.Expense)\",\"NativeReferenceName\":\"Expense\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"CostCenter\"},\"Name\":\"Expenses.CostCenter\",\"NativeReferenceName\":\"CostCenter\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Id\"},\"Name\":\"CountNonNull(Expenses.Id)\",\"NativeReferenceName\":\"Id\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Id\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"90.39040378523597D\"}}}},\"selector\":{\"metadata\":\"Expenses.CostCenter\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"55.154487592322944D\"}}}},\"selector\":{\"metadata\":\"CountNonNull(Expenses.Id)\"}}]}}}",
+          "filters": "[]",
+          "height": 529.10,
+          "width": 312.65,
+          "x": 557.66,
+          "y": 66.14,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"b4c9465e7e45418ca0c0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":19.54070981210856,\"y\":151.06471816283926,\"z\":0,\"width\":459.2066805845512,\"height\":215.69937369519835,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"CostCenter.CostCenter\"},{\"queryRef\":\"CostCenter.Name\"},{\"queryRef\":\"Sum(Expenses.Expense)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Dim_CostCenter\",\"Type\":0},{\"Name\":\"e\",\"Entity\":\"Fact_Expenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CostCenter\"},\"Name\":\"CostCenter.CostCenter\",\"NativeReferenceName\":\"CostCenter\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Name\"},\"Name\":\"CostCenter.Name\",\"NativeReferenceName\":\"Name\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Expense\"}},\"Function\":0},\"Name\":\"Sum(Expenses.Expense)\",\"NativeReferenceName\":\"Sum of Expense\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CostCenter\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 215.70,
+          "width": 459.21,
+          "x": 19.54,
+          "y": 151.06,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+relationship 9f55a432-de3c-4f9f-9a0c-96014eb7f2ce
+	isActive: false
+	fromColumn: Workspace.CapacityKeyIndex
+	toColumn: Capacity.CapacityKeyIndex
+
+relationship 581dfc3f-3d30-4189-b11b-3fc511dce281
+	fromColumn: Audit.WorkspaceKeyIndex
+	toColumn: Workspace.WorkspaceKeyIndex
+
+relationship 7290310a-d36f-4b86-90f9-7efcb63ca895
+	fromColumn: Audit.CapacityKeyIndex
+	toColumn: Capacity.CapacityKeyIndex
+
+relationship 655255a2-3fc7-4420-8ae2-35eee75f0f12
+	fromColumn: Audit.UserKeyIndex
+	toColumn: User.UserKeyIndex
+
+relationship 88748577-397e-4ccd-9adf-55a6d50a46a9
+	fromColumn: Audit.ObjectKeyIndex
+	toColumn: 'Fabric Items'.IndexKey
+
+relationship a3b4f2fd-e606-4ff3-abfc-162ab0b684ea
+	fromColumn: Audit.'Creation date'
+	toColumn: Date.Date
+
+relationship 32a56ef9-cb0a-4263-b385-dc7fd1715118
+	isActive: false
+	fromColumn: 'Fabric Items'.'Workspace Id'
+	toColumn: Workspace.'Workspace Id'
+
+relationship fd3bf739-f145-7d65-f4bc-1127fca13771
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromCardinality: one
+	fromColumn: WorkspacesM.'Workspace Id'
+	toColumn: Workspace.'Workspace Id'
+

@@ -1,0 +1,67 @@
+table EntraGroupBash
+	lineageTag: 7b1d2d46-8418-441d-bd92-7855cc63ea59
+
+	column '@odata.context'
+		dataType: string
+		lineageTag: aac69fb5-83a2-4bac-9abc-f5f3f6eaa109
+		summarizeBy: none
+		sourceColumn: @odata.context
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'value.@odata.type'
+		dataType: string
+		lineageTag: 2cfe2668-7dce-40c4-a9f7-6afaaaee1db9
+		summarizeBy: none
+		sourceColumn: value.@odata.type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'value.id'
+		dataType: string
+		lineageTag: e067ee66-e641-4392-a5a1-c2f02bf1f5ff
+		summarizeBy: none
+		sourceColumn: value.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'value.displayName'
+		dataType: string
+		lineageTag: 674e5d13-5e64-4c63-a393-480a559b6341
+		summarizeBy: none
+		sourceColumn: value.displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'value.mail'
+		dataType: string
+		lineageTag: d0089e78-a9ef-4c26-8d96-564936c7c92b
+		summarizeBy: none
+		sourceColumn: value.mail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'value.userPrincipalName'
+		dataType: string
+		lineageTag: be2ea08c-50bd-4d69-b66d-7bf82466ef1c
+		summarizeBy: none
+		sourceColumn: value.userPrincipalName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition EntraGroupBash = m
+		mode: import
+		source =
+				let
+				    Source = Json.Document(Web.Contents("https://graph.microsoft.com/v1.0/groups/33be3d4b-93bc-40d3-b487-3f79d629243d/members?$select=id,displayName,mail,userPrincipalName")),
+				    #"Converted to Table" = Table.FromRecords({Source}),
+				    #"Expanded value" = Table.ExpandListColumn(#"Converted to Table", "value"),
+				    #"Expanded value1" = Table.ExpandRecordColumn(#"Expanded value", "value", {"@odata.type", "id", "displayName", "mail", "userPrincipalName"}, {"value.@odata.type", "value.id", "value.displayName", "value.mail", "value.userPrincipalName"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded value1",{{"@odata.context", type text}, {"value.@odata.type", type text}, {"value.id", type text}, {"value.displayName", type any}, {"value.mail", type any}, {"value.userPrincipalName", type any}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
