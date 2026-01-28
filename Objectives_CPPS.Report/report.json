@@ -45,13 +45,22 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"eeb415ec07e4565ba34c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":100,\"y\":100,\"width\":300,\"height\":300,\"z\":1001,\"tabOrder\":1001}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"9524f92c2016545d9452\",\"layouts\":[{\"id\":0,\"position\":{\"x\":100,\"y\":100,\"width\":300,\"height\":300,\"z\":2001,\"tabOrder\":2001}}],\"singleVisual\":{\"visualType\":\"funnel\",\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
           "height": 300.00,
           "width": 300.00,
           "x": 100.00,
           "y": 100.00,
-          "z": 1001.00
+          "z": 2001.00
+        },
+        {
+          "config": "{\"name\":\"eeb415ec07e4565ba34c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":100,\"y\":100,\"width\":300,\"height\":300,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 300.00,
+          "width": 300.00,
+          "x": 100.00,
+          "y": 100.00,
+          "z": 2000.00
         }
       ],
       "width": 1280.00
