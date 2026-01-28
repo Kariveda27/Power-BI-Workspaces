@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["brl_functional_objectives_okr","brl_commercial_product_performance","brl_date_dim"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table brl_functional_objectives_okr
+ref table DateTableTemplate_c7fd2bb1-cc0c-4f49-ade5-17328d3bc5e5
+ref table LocalDateTable_e2dee699-3367-4e87-a99d-151724db608c
+ref table brl_commercial_product_performance
+ref table LocalDateTable_31ccf1fa-99c5-4816-9772-d693d1f19e20
+ref table brl_date_dim
+ref table LocalDateTable_785fa7ab-01a9-4ce0-96a3-2596abdaa541
+
+ref cultureInfo en-US
+

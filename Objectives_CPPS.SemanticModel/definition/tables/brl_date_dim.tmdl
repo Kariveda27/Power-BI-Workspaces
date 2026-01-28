@@ -1,0 +1,229 @@
+table brl_date_dim
+	lineageTag: 1332e458-00c6-42a4-a47d-870e4693f25f
+	dataCategory: Time
+
+	column rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: cbf24db5-87bc-49de-9bb8-1a717764b426
+		summarizeBy: sum
+		sourceColumn: rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_dt
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 7b4ea218-08cd-48c0-9023-fd5e63113491
+		summarizeBy: none
+		sourceColumn: cal_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 9aeab831-210e-4836-9876-557c1b5d1499
+		summarizeBy: sum
+		sourceColumn: cal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 87df60db-5d34-4231-a59b-e24dec028c86
+		summarizeBy: sum
+		sourceColumn: cal_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_day_nm_of_wk
+		dataType: string
+		lineageTag: 7e202773-4af0-40c9-b6f1-9fa0433c8260
+		summarizeBy: none
+		sourceColumn: cal_day_nm_of_wk
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_day_of_wk
+		dataType: int64
+		formatString: 0
+		lineageTag: f8dbfec3-9712-490e-a7af-c1318cd894e8
+		summarizeBy: sum
+		sourceColumn: cal_day_of_wk
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_nm_of_mth
+		dataType: string
+		lineageTag: f61ddb1e-00cd-4893-a1fc-0d9edb6ad896
+		summarizeBy: none
+		sourceColumn: cal_nm_of_mth
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_day_of_mth
+		dataType: int64
+		formatString: 0
+		lineageTag: c1c9aa49-fd33-4e35-95b9-a5537c1369ac
+		summarizeBy: sum
+		sourceColumn: cal_day_of_mth
+
+		annotation SummarizationSetBy = Automatic
+
+	column cal_day_of_yr
+		dataType: int64
+		formatString: 0
+		lineageTag: c033a24a-5651-4dff-ba51-a90d555103d3
+		summarizeBy: sum
+		sourceColumn: cal_day_of_yr
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_start_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c5f82a9d-8885-4786-ad3b-90ea1b0833cf
+		summarizeBy: none
+		sourceColumn: week_start_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column month_start_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0b98adf3-1903-4e1e-ae49-75bf23b0a739
+		summarizeBy: none
+		sourceColumn: month_start_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column qtr_start_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4d29712f-f06c-4f6a-b7dc-ce8c9fcfad37
+		summarizeBy: none
+		sourceColumn: qtr_start_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year_start_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1d9cd7e4-8ccb-412c-bc8a-e09188dd44b3
+		summarizeBy: none
+		sourceColumn: year_start_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column week_end_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 38a60a96-4c66-4c16-b1ef-58576fa60375
+		summarizeBy: none
+		sourceColumn: week_end_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column month_end_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 33c8496e-f6de-4361-9b94-5975dae859be
+		summarizeBy: none
+		sourceColumn: month_end_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column qtr_end_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9e2ed4b9-0693-448d-a42c-86fff3d505d7
+		summarizeBy: none
+		sourceColumn: qtr_end_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year_end_dt
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c815114c-028f-4eda-8095-e54a0772bfb8
+		summarizeBy: none
+		sourceColumn: year_end_dt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 71a918fe-512d-4e4f-ab86-b3c44ab5d343
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 560464a9-a580-4b0d-98e8-1f99e5c7a1b0
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: 0c627484-f758-4692-8f5d-c90ce1d2d428
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_frequency
+		dataType: string
+		lineageTag: 3af7f810-57f7-4495-9304-7911259bc268
+		summarizeBy: none
+		sourceColumn: load_frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column src_tablename
+		dataType: string
+		lineageTag: 791f041f-7873-4f7f-81e2-5d4385dbfcae
+		summarizeBy: none
+		sourceColumn: src_tablename
+
+		annotation SummarizationSetBy = Automatic
+
+	partition brl_date_dim = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_TechOps", [HierarchicalNavigation=true]),
+				    techopsdw_Database = Source{[Name="techopsdw",Kind="Database"]}[Data],
+				    brl_common_Schema = techopsdw_Database{[Name="brl_common",Kind="Schema"]}[Data],
+				    brl_date_dim_Table = brl_common_Schema{[Name="brl_date_dim",Kind="Table"]}[Data]
+				in
+				    brl_date_dim_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Objectives_CPPS"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8f3e77f7-edaf-9727-4121-3558da19f7d9"
+  }
+}

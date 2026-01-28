@@ -1,0 +1,19 @@
+relationship 7d9e14d2-2d8e-4c70-99c5-f4b13154dcf3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: brl_functional_objectives_okr.loaddate
+	toColumn: LocalDateTable_e2dee699-3367-4e87-a99d-151724db608c.Date
+
+relationship f4215a97-7e08-4acf-9bf0-b09ec9d3b438
+	joinOnDateBehavior: datePartOnly
+	fromColumn: brl_commercial_product_performance.loaddate
+	toColumn: LocalDateTable_31ccf1fa-99c5-4816-9772-d693d1f19e20.Date
+
+relationship 8d61b54e-5b08-df59-66ff-5439736f25f8
+	fromColumn: brl_commercial_product_performance.month
+	toColumn: brl_date_dim.cal_dt
+
+relationship e0fe25f8-4599-4c8f-8969-c34d3a725b4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: brl_functional_objectives_okr.quarter_end
+	toColumn: LocalDateTable_785fa7ab-01a9-4ce0-96a3-2596abdaa541.Date
+

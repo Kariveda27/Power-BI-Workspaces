@@ -1,0 +1,131 @@
+table brl_commercial_product_performance
+	lineageTag: 5bf06160-cacc-494c-add3-785c50750422
+
+	column rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: a9cf99f7-b2c3-49eb-ad5c-58a45cefa084
+		summarizeBy: sum
+		sourceColumn: rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 8c36edc0-cefc-434e-bf62-71d6f26ba724
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment_for_cmsc
+		dataType: string
+		lineageTag: 0a0b216a-747e-4014-9dcc-0fba72026be9
+		summarizeBy: none
+		sourceColumn: comment_for_cmsc
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 243776ce-03ca-46e6-964b-8935cefe0c8f
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column owner
+		dataType: string
+		lineageTag: 9100155d-2c75-4040-951c-6476f10177cc
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column product
+		dataType: string
+		lineageTag: 855da0b7-af77-4dbe-aa22-f4e5d6879524
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	column rag
+		dataType: string
+		lineageTag: 750d4414-cac3-4ace-86bd-8087c58b1ea9
+		summarizeBy: none
+		sourceColumn: rag
+
+		annotation SummarizationSetBy = Automatic
+
+	column scale
+		dataType: int64
+		formatString: 0
+		lineageTag: 869c86a0-c794-40d1-8603-8f04015a7782
+		summarizeBy: sum
+		sourceColumn: scale
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 57d25061-6ad1-423a-9f8a-55fca58fb500
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 93590400-3050-41ff-b55b-0f41be75f6d3
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		variation Variation
+			isDefault
+			relationship: f4215a97-7e08-4acf-9bf0-b09ec9d3b438
+			defaultHierarchy: LocalDateTable_31ccf1fa-99c5-4816-9772-d693d1f19e20.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: 56bcccca-82aa-4fb9-92b3-4e85f04f472f
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_frequency
+		dataType: string
+		lineageTag: f468f957-2044-4230-a482-8a8e0fb69916
+		summarizeBy: none
+		sourceColumn: load_frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column src_table_name
+		dataType: string
+		lineageTag: d9628d32-e890-4e33-9a70-25ebf35b2502
+		summarizeBy: none
+		sourceColumn: src_table_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition brl_commercial_product_performance = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_TechOps", [HierarchicalNavigation=true]),
+				    techopsdw_Database = Source{[Name="techopsdw",Kind="Database"]}[Data],
+				    brl_reference_Schema = techopsdw_Database{[Name="brl_reference",Kind="Schema"]}[Data],
+				    brl_commercial_product_performance_Table = brl_reference_Schema{[Name="brl_commercial_product_performance",Kind="Table"]}[Data]
+				in
+				    brl_commercial_product_performance_Table
+
+	annotation PBI_ResultType = Exception
+

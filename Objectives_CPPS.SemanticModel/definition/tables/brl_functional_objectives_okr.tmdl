@@ -1,0 +1,176 @@
+table brl_functional_objectives_okr
+	lineageTag: 13330b83-555f-40ac-a90d-4c257028c2d6
+
+	column rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c106089-0010-4f95-810d-2c60fd9e504a
+		summarizeBy: sum
+		sourceColumn: rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: 6ff034ed-85ee-43aa-8f51-b2a596219b9a
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 73fd7d6e-c76f-4479-b3e1-f45f6bf0c973
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		variation Variation
+			isDefault
+			relationship: 7d9e14d2-2d8e-4c70-99c5-f4b13154dcf3
+			defaultHierarchy: LocalDateTable_e2dee699-3367-4e87-a99d-151724db608c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: a7cdeb9a-e8c2-4578-9aa0-646a6c1efbe3
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_frequency
+		dataType: string
+		lineageTag: 6f8e462e-419d-463d-990f-eda3969cf575
+		summarizeBy: none
+		sourceColumn: load_frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column src_tablename
+		dataType: string
+		lineageTag: 75cf0f7b-166d-4684-ab9c-99a46b798218
+		summarizeBy: none
+		sourceColumn: src_tablename
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_latest_quarter_date
+		dataType: string
+		lineageTag: 2ee46762-ef60-4a21-ac3a-24de87d4f921
+		summarizeBy: none
+		sourceColumn: is_latest_quarter_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column pillar
+		dataType: string
+		lineageTag: 6bee995e-6f1a-474c-a1e1-1054fc0dfacd
+		summarizeBy: none
+		sourceColumn: pillar
+
+		annotation SummarizationSetBy = Automatic
+
+	column objective
+		dataType: string
+		lineageTag: d6fd8983-9eba-46e9-99f0-d9ae9709b3a5
+		summarizeBy: none
+		sourceColumn: objective
+
+		annotation SummarizationSetBy = Automatic
+
+	column portfolio_priority
+		dataType: string
+		lineageTag: 0aa577d7-3b3e-4b78-96c7-7f79f4c124a5
+		summarizeBy: none
+		sourceColumn: portfolio_priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column function
+		dataType: string
+		lineageTag: 7a9711ef-9b5f-4320-99b3-dafb988152ea
+		summarizeBy: none
+		sourceColumn: function
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: f7f3554c-8c28-4179-bc12-087da65653ea
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column key_result
+		dataType: string
+		lineageTag: 354fc96e-c2b5-42a8-a56e-fb110eb7f1a3
+		summarizeBy: none
+		sourceColumn: key_result
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment
+		dataType: string
+		lineageTag: b94469f3-093d-41bc-aad5-0451bb399002
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column tolt_owner
+		dataType: string
+		lineageTag: 045ab549-ea93-4c79-bac5-7bc5d726c1b6
+		summarizeBy: none
+		sourceColumn: tolt_owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eba2db30-716e-49e5-b173-a0cde38f359a
+		summarizeBy: none
+		sourceColumn: quarter_end
+
+		variation Variation
+			isDefault
+			relationship: e0fe25f8-4599-4c8f-8969-c34d3a725b4d
+			defaultHierarchy: LocalDateTable_785fa7ab-01a9-4ce0-96a3-2596abdaa541.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column rag_status
+		dataType: string
+		lineageTag: 541cf6e7-b925-4f19-bfab-fce8fa8a5dad
+		summarizeBy: none
+		sourceColumn: rag_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column score
+		dataType: int64
+		formatString: 0
+		lineageTag: a47cc9cb-68e3-47d1-a8e4-94b60b930337
+		summarizeBy: sum
+		sourceColumn: score
+
+		annotation SummarizationSetBy = Automatic
+
+	partition brl_functional_objectives_okr = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_TechOps", [HierarchicalNavigation=true]),
+				    techopsdw_Database = Source{[Name="techopsdw",Kind="Database"]}[Data],
+				    brl_objectives_Schema = techopsdw_Database{[Name="brl_objectives",Kind="Schema"]}[Data],
+				    brl_functional_objectives_okr_Table = brl_objectives_Schema{[Name="brl_functional_objectives_okr",Kind="Table"]}[Data]
+				in
+				    brl_functional_objectives_okr_Table
+
+	annotation PBI_ResultType = Exception
+
