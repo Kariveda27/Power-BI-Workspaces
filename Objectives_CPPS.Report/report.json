@@ -27,6 +27,15 @@
       "name": "b8d602bb9bd8a0c29a29",
       "visualContainers": [
         {
+          "config": "{\"name\":\"3c325cf1f0d41499b29a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":562.4220466022056,\"y\":0,\"z\":3001,\"width\":299.47147935961596,\"height\":299.47147935961596,\"tabOrder\":3001}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"brl_commercial_product_performance.loadedby\",\"active\":true},{\"queryRef\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Year\"},{\"queryRef\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Quarter\"},{\"queryRef\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Month\"},{\"queryRef\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Day\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"b\",\"Entity\":\"brl_commercial_product_performance\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"loadedby\"},\"Name\":\"brl_commercial_product_performance.loadedby\",\"NativeReferenceName\":\"loadedby\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Name\":\"Variation\",\"Property\":\"loaddate\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Year\"},\"Name\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Year\",\"NativeReferenceName\":\"loaddate Year\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Name\":\"Variation\",\"Property\":\"loaddate\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Quarter\"},\"Name\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Quarter\",\"NativeReferenceName\":\"loaddate Quarter\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Name\":\"Variation\",\"Property\":\"loaddate\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Month\"},\"Name\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Month\",\"NativeReferenceName\":\"loaddate Month\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Name\":\"Variation\",\"Property\":\"loaddate\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Day\"},\"Name\":\"brl_commercial_product_performance.loaddate.Variation.Date Hierarchy.Day\",\"NativeReferenceName\":\"loaddate Day\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 299.47,
+          "width": 299.47,
+          "x": 562.42,
+          "y": 0.00,
+          "z": 3001.00
+        },
+        {
           "config": "{\"name\":\"447b72849a90d73e2540\",\"layouts\":[{\"id\":0,\"position\":{\"x\":80,\"y\":0,\"z\":1000,\"width\":432,\"height\":96,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"brl_commercial_product_performance.month\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"b\",\"Entity\":\"brl_commercial_product_performance\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"month\"},\"Name\":\"brl_commercial_product_performance.month\",\"NativeReferenceName\":\"month\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"month\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"b\",\"Entity\":\"brl_commercial_product_performance\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"month\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"datetime'2026-01-01T00:00:00'\"}}]]}}}]}}}}]}}}",
           "filters": "[]",
           "height": 96.00,
@@ -45,13 +54,13 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"9524f92c2016545d9452\",\"layouts\":[{\"id\":0,\"position\":{\"x\":100,\"y\":100,\"width\":300,\"height\":300,\"z\":2001,\"tabOrder\":2001}}],\"singleVisual\":{\"visualType\":\"funnel\",\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"9524f92c2016545d9452\",\"layouts\":[{\"id\":0,\"position\":{\"x\":100,\"y\":100,\"width\":300,\"height\":300,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"funnel\",\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
           "height": 300.00,
           "width": 300.00,
           "x": 100.00,
           "y": 100.00,
-          "z": 2001.00
+          "z": 3000.00
         },
         {
           "config": "{\"name\":\"eeb415ec07e4565ba34c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":100,\"y\":100,\"width\":300,\"height\":300,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"drillFilterOtherVisuals\":true}}",
