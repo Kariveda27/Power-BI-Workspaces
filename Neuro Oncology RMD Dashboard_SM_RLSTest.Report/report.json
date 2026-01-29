@@ -36,13 +36,13 @@
           "z": 1000.00
         },
         {
-          "config": "{\"name\":\"5607b4f857491162ac67\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":290,\"width\":280,\"height\":280,\"z\":1001,\"tabOrder\":1001}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"sam_hemonc_mirf_dorda.abdemail\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sam_hemonc_mirf_dorda\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"abdemail\"},\"Name\":\"sam_hemonc_mirf_dorda.abdemail\",\"NativeReferenceName\":\"abdemail\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"5607b4f857491162ac67\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":290,\"width\":280,\"height\":280,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"sam_hemonc_mirf_dorda.abdemail\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sam_hemonc_mirf_dorda\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"abdemail\"},\"Name\":\"sam_hemonc_mirf_dorda.abdemail\",\"NativeReferenceName\":\"abdemail\"}]},\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
           "height": 280.00,
           "width": 280.00,
           "x": 10.00,
           "y": 290.00,
-          "z": 1001.00
+          "z": 2000.00
         },
         {
           "config": "{\"name\":\"7d5de6e45473cdd07cfc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"sam_hemonc_user_security_extract.oamusername\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sam_hemonc_user_security_extract\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"oamusername\"},\"Name\":\"sam_hemonc_user_security_extract.oamusername\",\"NativeReferenceName\":\"oamusername\"}]},\"drillFilterOtherVisuals\":true}}",
@@ -52,6 +52,15 @@
           "x": 10.00,
           "y": 0.00,
           "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"cec8bb12b5bf570c35b4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":623.9858698851928,\"y\":321.38402662983174,\"z\":2001,\"width\":279.6458413532302,\"height\":150.2574669957655,\"tabOrder\":2001}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"JAZZ ID.jazzid\",\"active\":true}],\"Series\":[{\"queryRef\":\"sam_hemonc_events_daily_msl.account_type\"}],\"Y\":[{\"queryRef\":\"Sum(sam_hemonc_events_daily_msl.attendees)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JAZZ ID\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"sam_hemonc_events_daily_msl\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"jazzid\"},\"Name\":\"JAZZ ID.jazzid\",\"NativeReferenceName\":\"jazzid\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"account_type\"},\"Name\":\"sam_hemonc_events_daily_msl.account_type\",\"NativeReferenceName\":\"account_type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"attendees\"}},\"Function\":0},\"Name\":\"Sum(sam_hemonc_events_daily_msl.attendees)\",\"NativeReferenceName\":\"Sum of attendees\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"attendees\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 150.26,
+          "width": 279.65,
+          "x": 623.99,
+          "y": 321.38,
+          "z": 2001.00
         }
       ],
       "width": 1280.00
