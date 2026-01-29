@@ -1,0 +1,807 @@
+table sam_hemonc_mirf_dorda
+	lineageTag: 024d37a9-f71d-43fe-8893-a49aedfba3e3
+
+	measure 'MIR Submitted Call Count' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]),
+			    FILTER(
+			        sam_hemonc_mirf_dorda, NOT(ISBLANK(sam_hemonc_mirf_dorda[request_number])) &&
+			        TRIM(sam_hemonc_mirf_dorda[status]) = "Submitted"
+			    )
+			),0)
+		formatString: 0
+		lineageTag: 5b9c0799-5fff-49f7-a251-0f52056bea9d
+
+	measure 'MIR Submitted Call %' =
+			
+			DIVIDE([MIR Submitted Call Count], DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 85c5c905-4191-4827-9ef3-9d87890e0a4b
+
+	measure 'MIR Cancelled Call Count' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]),
+			    FILTER(
+			        sam_hemonc_mirf_dorda, NOT(ISBLANK(sam_hemonc_mirf_dorda[request_number])) &&
+			        TRIM(sam_hemonc_mirf_dorda[status]) = "Cancelled"
+			    )
+			),0)
+		formatString: 0
+		lineageTag: 44964418-a824-492d-9705-388b37b931a6
+
+	measure 'MIR Cancelled Call %' =
+			
+			DIVIDE([MIR Cancelled Call Count], DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: da1e3ff8-5cf5-4abb-8481-24d2cfda4b7d
+
+	measure 'MIR Closed Call Count' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]),
+			    FILTER(
+			        sam_hemonc_mirf_dorda, NOT(ISBLANK(sam_hemonc_mirf_dorda[request_number])) &&
+			        TRIM(sam_hemonc_mirf_dorda[status]) = "Closed"
+			    )
+			),0)
+		formatString: 0
+		lineageTag: fe1395c0-9205-4581-be27-be81bb1c36cf
+
+	measure 'MIR Closed Call %' =
+			
+			DIVIDE([MIR Closed Call Count], DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f5a80263-e463-431b-af06-905077d0c2e3
+
+	measure 'MIR Request Submitted Call Count 1' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[mirf_case_id]),
+			    FILTER(
+			        sam_hemonc_mirf_dorda, NOT(ISBLANK(sam_hemonc_mirf_dorda[mirf_case_id])) &&
+			        TRIM(sam_hemonc_mirf_dorda[request_for_msl_followup]) = "Yes"
+			    )
+			)
+		formatString: 0
+		lineageTag: 000daf3f-5293-4f2e-a410-f268712ecc1f
+
+	measure 'MIR Responded Call %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        DISTINCTCOUNT(sam_hemonc_mirf_dorda[mirf_case_id]),
+			        FILTER(
+			            sam_hemonc_mirf_dorda,
+			            TRIM(sam_hemonc_mirf_dorda[request_for_msl_followup]) = "No"
+			        )
+			    ),
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[mirf_case_id])
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 7c732ce1-98b9-465f-af4a-a85a9c0c2bd2
+
+	measure 'MIR Call Count' = ```
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[mirf_case_id]),
+			    FILTER(
+			        sam_hemonc_mirf_dorda, NOT(ISBLANK(sam_hemonc_mirf_dorda[mirf_case_id])) 
+			        //&& TRIM(sam_hemonc_mirf_dorda[status]) = "Submitted_vod"
+			    )
+			),0)
+			```
+		formatString: 0
+		lineageTag: 2121034b-9ec8-4477-91cf-ffda06a162b7
+
+	measure 'Max Date (Mirf)' = MAX(sam_hemonc_mirf_dorda[updatedate])
+		formatString: Short Date
+		lineageTag: c45a7e07-3548-406f-bbe8-c2b72007cf2b
+
+	measure '% RMD Attention' = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNT(sam_hemonc_mirf_dorda[request_number]),
+			        sam_hemonc_mirf_dorda[request_for_msl_follow_up_mvn__c] = "Yes"
+			    ),
+			    COUNT(sam_hemonc_mirf_dorda[request_number])
+			)
+			
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 41460278-9cea-4fa0-a026-4a9065de2d69
+
+	measure 'MIR Open Call Count' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]),
+			    FILTER(
+			        sam_hemonc_mirf_dorda, NOT(ISBLANK(sam_hemonc_mirf_dorda[request_number])) &&
+			        TRIM(sam_hemonc_mirf_dorda[status]) = "Open"
+			    )
+			),0)
+		formatString: 0
+		lineageTag: 4001e5ab-53a2-4c65-8d5f-f2c07470b06b
+
+	measure 'MIR Open Call %' =
+			
+			DIVIDE([MIR Open Call Count], DISTINCTCOUNT(sam_hemonc_mirf_dorda[request_number]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7d21beef-0f93-49a7-ba71-6468b08ba071
+
+	column status
+		dataType: string
+		lineageTag: 2b1008a6-4f9d-4850-b6bf-7591e5ca2a2a
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column inquiry_text
+		dataType: string
+		lineageTag: 77371d75-c261-40e9-8ab6-c39fa7ccf2e1
+		summarizeBy: none
+		sourceColumn: inquiry_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_name
+		dataType: string
+		lineageTag: 5f21b684-e1ed-48de-afe1-e78fdafb4b11
+		summarizeBy: none
+		sourceColumn: hcp_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_address
+		dataType: string
+		lineageTag: 70b64fb2-36d1-44dd-9abe-5c4518bb9701
+		summarizeBy: none
+		sourceColumn: hcp_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_city
+		dataType: string
+		lineageTag: aff757ff-5dfe-42b9-9584-9454f32c0690
+		summarizeBy: none
+		sourceColumn: hcp_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_state
+		dataType: string
+		lineageTag: 0ada3901-e675-4128-85e3-3e1dda473da3
+		summarizeBy: none
+		sourceColumn: hcp_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_zipcode
+		dataType: string
+		lineageTag: f61b2fc4-8d72-4f08-9d09-590bafce325b
+		summarizeBy: none
+		sourceColumn: hcp_zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_credential
+		dataType: string
+		lineageTag: aebc1d49-db0e-469f-a8c8-457d0fe38a9a
+		summarizeBy: none
+		sourceColumn: hcp_credential
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MIR Date' = FORMAT(sam_hemonc_mirf_dorda[mirf_date], "MM/dd/yyyy")
+		lineageTag: 5376034f-b7d7-4993-b688-833cb8582039
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7e4757a5-3e6d-4a42-af63-ba64adf4780d
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		variation Variation
+			isDefault
+			relationship: 620ae20e-11d8-428c-91d7-346ec15ea588
+			defaultHierarchy: LocalDateTable_94d739d8-5aed-4619-90eb-b6938aeebe68.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: e70a216f-1af8-4e01-bf3b-1dcf9af1c831
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: dbf8c5aa-0f64-4056-9e4f-a3f57dce68fb
+		summarizeBy: none
+		sourceColumn: updatedate
+
+		variation Variation
+			isDefault
+			relationship: f021ace4-e30f-49b5-b48c-041cc775aaf6
+			defaultHierarchy: LocalDateTable_3244dbd8-d13d-4a0d-8846-f2ebc0010d13.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updateby
+		dataType: string
+		lineageTag: b4093a28-8c7d-48bf-81b1-d37c8feb9ae4
+		summarizeBy: none
+		sourceColumn: updateby
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadfrequency
+		dataType: string
+		lineageTag: e1f2fb1d-e3aa-4540-93d9-15efde10a6b6
+		summarizeBy: none
+		sourceColumn: loadfrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sourcefilename
+		dataType: string
+		lineageTag: 5d2bd886-c730-441c-b795-8f371474d3cf
+		summarizeBy: none
+		sourceColumn: sourcefilename
+
+		annotation SummarizationSetBy = Automatic
+
+	column interaction_number
+		dataType: string
+		lineageTag: baf56dab-bbb2-449a-9933-cd04192fdf39
+		summarizeBy: none
+		sourceColumn: interaction_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_number
+		dataType: string
+		lineageTag: 6f303389-5348-40b2-b1b9-534b69785480
+		summarizeBy: none
+		sourceColumn: request_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_document_number
+		dataType: string
+		lineageTag: bad935b1-e616-4dc5-9d8c-6cb7b4517c0c
+		summarizeBy: none
+		sourceColumn: request_document_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column interaction_owner
+		dataType: string
+		lineageTag: 7277c3cd-2d63-40d2-874c-a24a0a67bb5c
+		summarizeBy: none
+		sourceColumn: interaction_owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column referred_by_email_lookup
+		dataType: string
+		lineageTag: 21a74249-951a-40e0-9602-3f34590470a0
+		summarizeBy: none
+		sourceColumn: referred_by_email_lookup
+
+		annotation SummarizationSetBy = Automatic
+
+	column referred_by_email
+		dataType: string
+		lineageTag: 5b7e7c58-4580-44be-9650-0ca1fb9f25fd
+		summarizeBy: none
+		sourceColumn: referred_by_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column requester_name
+		dataType: string
+		lineageTag: 04d40c5a-bb17-4091-9410-b086957a2067
+		summarizeBy: none
+		sourceColumn: requester_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column referred_by_name
+		dataType: string
+		lineageTag: b0aacdb8-db33-4c48-8d99-4d9dfba79f7e
+		summarizeBy: none
+		sourceColumn: referred_by_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column institution_name
+		dataType: string
+		lineageTag: cc95e1d1-c087-447b-b37c-8cfdfaa8f8af
+		summarizeBy: none
+		sourceColumn: institution_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_record_type
+		dataType: string
+		lineageTag: 36b14dfe-54ed-4006-b2fe-a4d68937b27f
+		summarizeBy: none
+		sourceColumn: account_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column requester_info
+		dataType: string
+		lineageTag: d28c1d0c-1184-4d4e-a063-2d84c3eb03a0
+		summarizeBy: none
+		sourceColumn: requester_info
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_form_number
+		dataType: string
+		lineageTag: 4a293f85-d952-4826-b43d-183699295d7c
+		summarizeBy: none
+		sourceColumn: inbound_form_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_display_name
+		dataType: string
+		lineageTag: fbf0c317-527e-4513-8aa4-647e115025ae
+		summarizeBy: none
+		sourceColumn: product_display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: d50cea77-b462-43aa-b726-829c1a0397ac
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column legal_hold
+		dataType: string
+		lineageTag: fd898b66-aa97-45fa-8db6-53befc124373
+		summarizeBy: none
+		sourceColumn: legal_hold
+
+		annotation SummarizationSetBy = Automatic
+
+	column mi_number
+		dataType: string
+		lineageTag: 5f59b364-3834-4cbb-adcf-dbb3bafb8bbd
+		summarizeBy: none
+		sourceColumn: mi_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column legacy_indication
+		dataType: string
+		lineageTag: 7e044ebe-e72b-4c62-b16f-3c19f79e3b76
+		summarizeBy: none
+		sourceColumn: legacy_indication
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_delivery_method
+		dataType: string
+		lineageTag: 87f3be7f-7241-487e-bffe-17a02e9c3ba5
+		summarizeBy: none
+		sourceColumn: preferred_delivery_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: 4b78dc05-144b-427c-bef9-41731b045d09
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_time_opened
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 41a19be2-a1a8-4a8d-a60a-cd26bbc66f99
+		summarizeBy: none
+		sourceColumn: date_time_opened
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 7cb6dae9-23aa-4aa5-a923-85c0e4464e69
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_information_number
+		dataType: string
+		lineageTag: 3a7cb3ff-12a9-4020-8a41-20c92fdf9298
+		summarizeBy: none
+		sourceColumn: contact_information_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel_details
+		dataType: string
+		lineageTag: 7667d43f-8bd4-472d-8852-ca60b5c5f89e
+		summarizeBy: none
+		sourceColumn: channel_details
+
+		annotation SummarizationSetBy = Automatic
+
+	column response_type
+		dataType: string
+		lineageTag: f1dce1a1-2aae-48c9-8756-62c401c06a9b
+		summarizeBy: none
+		sourceColumn: response_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner
+		dataType: string
+		lineageTag: 747b8992-e6f0-4581-936f-718442faa626
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_document_id
+		dataType: string
+		lineageTag: 40878655-cac7-41e6-9ad9-1efec2087dfc
+		summarizeBy: none
+		sourceColumn: request_document_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_owner
+		dataType: string
+		lineageTag: f7977293-733e-42e3-9649-8dade027e3e1
+		summarizeBy: none
+		sourceColumn: request_owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column referred_by_account_name
+		dataType: string
+		lineageTag: 8d4fb331-aa23-4bde-9126-7e23df1952bc
+		summarizeBy: none
+		sourceColumn: referred_by_account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column institution_account_name
+		dataType: string
+		lineageTag: 968c9fe0-141c-43f4-aa93-5fb987170c58
+		summarizeBy: none
+		sourceColumn: institution_account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_name_type
+		dataType: string
+		lineageTag: fd022bf2-de9a-4e88-bc17-41fbf4497148
+		summarizeBy: none
+		sourceColumn: account_name_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_time_closed
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0e023b0a-d901-4f51-971b-10b763513748
+		summarizeBy: none
+		sourceColumn: date_time_closed
+
+		variation Variation
+			isDefault
+			relationship: 4c5a125a-556c-4a1f-889b-0c48b76763f8
+			defaultHierarchy: LocalDateTable_b5a2a632-3b5d-4eb5-b651-7b07cc9c66a9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column external_id
+		dataType: string
+		lineageTag: 0fb0c007-f772-4a7d-afdf-7840960d9072
+		summarizeBy: none
+		sourceColumn: external_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_id
+		dataType: string
+		lineageTag: 34238b0f-86ee-4d27-abbb-3cc10dff95a6
+		summarizeBy: none
+		sourceColumn: request_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fieldtype
+		dataType: string
+		lineageTag: 79b1fc38-8cac-4930-b06f-f84b6b9fa519
+		summarizeBy: none
+		sourceColumn: fieldtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column territoryid
+		dataType: string
+		lineageTag: ae0b119e-6d3c-4c39-ad1b-975f3468b85c
+		summarizeBy: none
+		sourceColumn: territoryid
+
+		annotation SummarizationSetBy = Automatic
+
+	column territoryname
+		dataType: string
+		lineageTag: 9ada887c-3d41-4ad1-92c6-721a6eb1be39
+		summarizeBy: none
+		sourceColumn: territoryname
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamname
+		dataType: string
+		lineageTag: 3eae6e16-277b-42cb-b4e8-97e1ac6fd013
+		summarizeBy: none
+		sourceColumn: oamname
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamusername
+		dataType: string
+		lineageTag: cb45353c-d7a1-4841-99be-6e6613b5a58b
+		summarizeBy: none
+		sourceColumn: oamusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamemail
+		dataType: string
+		lineageTag: a1f77ad4-df00-405c-b87e-e489b8fcd86b
+		summarizeBy: none
+		sourceColumn: oamemail
+
+		annotation SummarizationSetBy = Automatic
+
+	column regionid
+		dataType: string
+		lineageTag: 59c188b9-f998-431a-89a2-da7fa5606d47
+		summarizeBy: none
+		sourceColumn: regionid
+
+		annotation SummarizationSetBy = Automatic
+
+	column regionname
+		dataType: string
+		lineageTag: 922fc11e-a499-466c-b9bc-943706f0c924
+		summarizeBy: none
+		sourceColumn: regionname
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsmname
+		dataType: string
+		lineageTag: 9aedb941-b738-4549-9d19-8d73d613bbd1
+		summarizeBy: none
+		sourceColumn: rsmname
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsmemail
+		dataType: string
+		lineageTag: 723673ee-acee-43b1-a31a-e0efbd59a17d
+		summarizeBy: none
+		sourceColumn: rsmemail
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsmusername
+		dataType: string
+		lineageTag: 1e154ba9-21df-4632-aa52-d8086dc8bc3a
+		summarizeBy: none
+		sourceColumn: rsmusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column areaid
+		dataType: string
+		lineageTag: 68443165-2a15-4867-aba5-4ab1e04ecba1
+		summarizeBy: none
+		sourceColumn: areaid
+
+		annotation SummarizationSetBy = Automatic
+
+	column areaname
+		dataType: string
+		lineageTag: c5d532e9-f100-42ee-99cb-4017ddeb33df
+		summarizeBy: none
+		sourceColumn: areaname
+
+		annotation SummarizationSetBy = Automatic
+
+	column abdname
+		dataType: string
+		lineageTag: 588af44d-58b9-4aa2-bc06-753a9847b51a
+		summarizeBy: none
+		sourceColumn: abdname
+
+		annotation SummarizationSetBy = Automatic
+
+	column abdemail
+		dataType: string
+		lineageTag: cc4f883c-76d8-4cb4-98b5-89977c73f3be
+		summarizeBy: none
+		sourceColumn: abdemail
+
+		annotation SummarizationSetBy = Automatic
+
+	column abdusername
+		dataType: string
+		lineageTag: 9037d344-665d-4220-92ec-845eb4406581
+		summarizeBy: none
+		sourceColumn: abdusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column nationid
+		dataType: string
+		lineageTag: 3eb725f8-96cf-4138-90e1-6a0f8b15ec5d
+		summarizeBy: none
+		sourceColumn: nationid
+
+		annotation SummarizationSetBy = Automatic
+
+	column nationname
+		dataType: string
+		lineageTag: c0db1014-fc89-471d-83e6-ca176e6980d7
+		summarizeBy: none
+		sourceColumn: nationname
+
+		annotation SummarizationSetBy = Automatic
+
+	column directorname
+		dataType: string
+		lineageTag: 656edcb3-18d6-4274-a674-35ea310418de
+		summarizeBy: none
+		sourceColumn: directorname
+
+		annotation SummarizationSetBy = Automatic
+
+	column directoremail
+		dataType: string
+		lineageTag: fa752b21-ef97-4f53-966e-917930c3817b
+		summarizeBy: none
+		sourceColumn: directoremail
+
+		annotation SummarizationSetBy = Automatic
+
+	column directorusername
+		dataType: string
+		lineageTag: 7bcedbc3-0310-468f-b703-f18107db7877
+		summarizeBy: none
+		sourceColumn: directorusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_name_mirf
+		dataType: string
+		lineageTag: b82835cf-19dd-4859-8985-8d18650ffb31
+		summarizeBy: none
+		sourceColumn: hcp_name_mirf
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_address_mirf
+		dataType: string
+		lineageTag: d0b1ddc0-3611-4e8c-ba1d-66f49273dde2
+		summarizeBy: none
+		sourceColumn: hcp_address_mirf
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_city_mirf
+		dataType: string
+		lineageTag: cf155110-8e03-43d2-91b4-044d142241a3
+		summarizeBy: none
+		sourceColumn: hcp_city_mirf
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_state_mirf
+		dataType: string
+		lineageTag: 6d674d56-867d-4e1f-8593-dacb0113f83f
+		summarizeBy: none
+		sourceColumn: hcp_state_mirf
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_zipcode_mirf
+		dataType: string
+		lineageTag: f5f80d3a-1b19-40b7-b7db-90d748700f2c
+		summarizeBy: none
+		sourceColumn: hcp_zipcode_mirf
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcpid_mirf
+		dataType: string
+		lineageTag: eb0ad04e-e4d4-4de4-830f-33ce949c3d98
+		summarizeBy: none
+		sourceColumn: hcpid_mirf
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_for_msl_follow_up_mvn__c
+		dataType: string
+		lineageTag: d0d07ca1-1903-4ea5-b1f7-8597f60eff3e
+		summarizeBy: none
+		sourceColumn: request_for_msl_follow_up_mvn__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_for_pvo_follow_up__c
+		dataType: string
+		lineageTag: 7342b235-4f94-4e09-beab-1d5724d347e7
+		summarizeBy: none
+		sourceColumn: request_for_pvo_follow_up__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeToClose_hours =
+			
+			DATEDIFF(sam_hemonc_mirf_dorda[date_time_opened],sam_hemonc_mirf_dorda[date_time_closed], HOUR)
+		formatString: 0
+		lineageTag: 79149f81-560e-4e7e-bd07-7f4653c97263
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeToClose_days =
+			
+			DATEDIFF(sam_hemonc_mirf_dorda[date_time_opened],sam_hemonc_mirf_dorda[date_time_closed], DAY)
+		formatString: 0
+		lineageTag: 467206da-036b-4ed0-9e93-31e6a90876c5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: dc19a40c-be8e-4c33-8c7e-78993f04ca06
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sam_hemonc_mirf_dorda = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_CommercialUS", [HierarchicalNavigation=true]),
+				    commdw_Database = Source{[Name="commdw",Kind="Database"]}[Data],
+				    sam_hemonc_bu_Schema = commdw_Database{[Name="sam_hemonc_bu",Kind="Schema"]}[Data],
+				    sam_hemonc_mirf_dorda_Table = sam_hemonc_bu_Schema{[Name="sam_hemonc_mirf_dorda",Kind="Table"]}[Data]
+				in
+				    sam_hemonc_mirf_dorda_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

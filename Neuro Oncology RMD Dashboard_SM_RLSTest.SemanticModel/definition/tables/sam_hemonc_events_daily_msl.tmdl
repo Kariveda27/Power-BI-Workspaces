@@ -1,0 +1,877 @@
+table sam_hemonc_events_daily_msl
+	lineageTag: 1174549e-27e9-433b-b7ad-81d3b71a70e6
+
+	measure Reached =
+			
+			CALCULATE(DISTINCTCOUNT(sam_hemonc_events_daily_msl[jazzid]))+0
+		formatString: 0
+		lineageTag: a6619d98-e244-41b5-94ae-8322158902cf
+
+	measure Interactions =
+			
+			CALCULATE(DISTINCTCOUNT(sam_hemonc_events_daily_msl[callid]))+0
+			/*
+			    COALESCE(CALCULATE(
+			        DISTINCTCOUNT(sam_hemonc_events_daily_msl[callid]),
+			        FILTER(
+			            sam_hemonc_events_daily_msl,
+			            NOT(ISBLANK(sam_hemonc_events_daily_msl[callid]))
+			            -- && TRIM(sam_hemonc_mirf_dorda[status]) = "Closed"
+			        )
+			    ),0
+			  )*/
+		formatString: 0
+		lineageTag: 6c029fc3-3a93-40db-b043-7d29cfb7769e
+
+	measure Frequency =
+			
+			DIVIDE(
+			  [Interactions],
+			  [Reached],
+			  0
+			)
+		formatString: 0.0
+		lineageTag: 6d773e0c-3cfa-4ebd-819b-6924da03434b
+
+	measure 'Reached 1' =
+			
+			CALCULATE(DISTINCTCOUNT(sam_hemonc_events_daily_msl[jazzid]))+0
+		formatString: 0
+		lineageTag: 208bf160-260d-4263-9c21-ec32f0c63ab0
+
+	measure 'Latest Interaction Date' = MAX(sam_hemonc_events_daily_msl[eventdate])
+		formatString: Short Date
+		lineageTag: 02b95a80-a046-47e1-9820-0de66c8c8a02
+
+	measure 'First Interaction Date' = MIN(sam_hemonc_events_daily_msl[eventdate])
+		formatString: Short Date
+		lineageTag: 3db01048-068f-451c-af20-b6ed5a522af4
+
+	measure 'Latest Topics Discussed' =
+			
+			VAR MaxDate = MAX ( sam_hemonc_events_daily_msl[eventdate])
+			RETURN
+			    CALCULATE (
+			        FIRSTNONBLANK ( sam_hemonc_events_daily_msl[specifictopics], 1 ),
+			        sam_hemonc_events_daily_msl[eventdate] = MaxDate
+			    )
+		lineageTag: 4818f07e-dac5-47ed-97c0-13d7e824df87
+
+	measure 'Max Date (MSL)' = ```
+			FORMAT(MAX(sam_hemonc_events_daily_msl[updatedate]),"mm/dd/yyyy")
+			
+			```
+		lineageTag: b52b1ba3-0f13-428e-8472-52f43f65ffc3
+
+	measure Measure =
+			SUMX(
+			    VALUES(sam_hemonc_events_daily_msl[eventdate]),
+			    CALCULATE(DISTINCTCOUNT(sam_hemonc_events_daily_msl[jazzid]))
+			)
+		formatString: 0
+		lineageTag: 918f04a9-affa-4944-b28f-021946c5c8ff
+
+	column rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a2f0ea8-51fe-4177-998b-d15ae9d5bd06
+		summarizeBy: sum
+		sourceColumn: rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column cdtuniqueid
+		dataType: string
+		lineageTag: eaf62623-5764-487f-8f80-68360e0b13d7
+		summarizeBy: none
+		sourceColumn: cdtuniqueid
+
+		annotation SummarizationSetBy = Automatic
+
+	column mdmid
+		dataType: string
+		lineageTag: 8d4a15cd-6362-4eaa-adb6-ec2867d3bd6f
+		summarizeBy: none
+		sourceColumn: mdmid
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazzid
+		dataType: string
+		lineageTag: bd119ed3-8931-40b1-8a3c-eb531130cbef
+		summarizeBy: none
+		sourceColumn: jazzid
+
+		annotation SummarizationSetBy = Automatic
+
+	column veevaid
+		dataType: string
+		lineageTag: 40709050-286a-4ecc-9a1a-59030e2610ec
+		summarizeBy: none
+		sourceColumn: veevaid
+
+		annotation SummarizationSetBy = Automatic
+
+	column veevaurl
+		dataType: string
+		lineageTag: 933d811b-935c-49ec-950b-ffb4b2482aa6
+		summarizeBy: none
+		sourceColumn: veevaurl
+
+		annotation SummarizationSetBy = Automatic
+
+	column calltherapeuticarea
+		dataType: string
+		lineageTag: 0aec3e58-772f-4a51-be28-cefe7410014c
+		summarizeBy: none
+		sourceColumn: calltherapeuticarea
+
+		annotation SummarizationSetBy = Automatic
+
+	column discussiontherapeuticarea
+		dataType: string
+		lineageTag: 4b4e59bd-8570-4f72-b92f-54248481b3e7
+		summarizeBy: none
+		sourceColumn: discussiontherapeuticarea
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcpacademicflag
+		dataType: string
+		lineageTag: 3b2dad87-13e3-4abb-8274-dd23eaa7a79c
+		summarizeBy: none
+		sourceColumn: hcpacademicflag
+
+		annotation SummarizationSetBy = Automatic
+
+	column productname
+		dataType: string
+		lineageTag: de1f8b32-fb1e-467c-ae0f-c3ea17555ac1
+		summarizeBy: none
+		sourceColumn: productname
+
+		annotation SummarizationSetBy = Automatic
+
+	column npi
+		dataType: string
+		lineageTag: 1d4acb32-b702-45b4-8a7d-709b212b3c26
+		summarizeBy: none
+		sourceColumn: npi
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountname
+		dataType: string
+		lineageTag: 2029abd4-aa87-409b-b5bc-b281ad89f946
+		summarizeBy: none
+		sourceColumn: accountname
+
+		annotation SummarizationSetBy = Automatic
+
+	column customertype
+		dataType: string
+		lineageTag: 28c33fe8-10d5-433f-86fb-9a5e05a006a8
+		summarizeBy: none
+		sourceColumn: customertype
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: e4359e16-e66c-431b-8692-74af8352ae7c
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 97b5d157-2262-4e26-9527-edf89c3b3ab2
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column zipcode
+		dataType: string
+		lineageTag: ab8ae8d7-c6a2-43bd-92bf-a6f72e47e829
+		summarizeBy: none
+		sourceColumn: zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 974df4ce-adde-497e-a9f4-1944e41c9294
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column specialty1
+		dataType: string
+		lineageTag: 1f53c4b9-5268-4d79-93e4-29fb6e415ca5
+		summarizeBy: none
+		sourceColumn: specialty1
+
+		annotation SummarizationSetBy = Automatic
+
+	column specialty2
+		dataType: string
+		lineageTag: 83429fad-58b4-47b3-ad58-366c38c2bf1f
+		summarizeBy: none
+		sourceColumn: specialty2
+
+		annotation SummarizationSetBy = Automatic
+
+	column hemonctl
+		dataType: string
+		lineageTag: 9e6fa46e-b74a-453b-a266-253b61bd59a6
+		summarizeBy: none
+		sourceColumn: hemonctl
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounttllevel
+		dataType: string
+		lineageTag: ba255094-48ce-4579-9f74-a6b4af228ce4
+		summarizeBy: none
+		sourceColumn: accounttllevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventid
+		dataType: string
+		lineageTag: ba282f7f-efed-4738-bf9c-a08c03c11e41
+		summarizeBy: none
+		sourceColumn: eventid
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventtype
+		dataType: string
+		lineageTag: cf28a962-7e92-495d-8099-a6a4b81e1449
+		summarizeBy: none
+		sourceColumn: eventtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column medical_insight_callid
+		dataType: string
+		lineageTag: ee19816b-29a3-40bf-bf17-40b04ffbf4a3
+		summarizeBy: none
+		sourceColumn: medical_insight_callid
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventdate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b7f1e986-5ee2-47cf-991d-9af5fafffdd5
+		summarizeBy: none
+		sourceColumn: eventdate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column eventweekendingdate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 81d633e7-bbe0-4a51-a7fc-7838178c8ada
+		summarizeBy: none
+		sourceColumn: eventweekendingdate
+
+		variation Variation
+			isDefault
+			relationship: 0de3dfe7-9705-4cc2-9be1-85664c65d3f9
+			defaultHierarchy: LocalDateTable_564a8c84-609e-45e3-832e-6b58f7c2b7b0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column eventmonthyear
+		dataType: string
+		lineageTag: 2c99c8a0-dff8-4bc4-9fd5-c606c8fe68ea
+		summarizeBy: none
+		sourceColumn: eventmonthyear
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventquarter
+		dataType: string
+		lineageTag: fbdc4852-9257-4584-8354-13b3e42ea9da
+		summarizeBy: none
+		sourceColumn: eventquarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventyear
+		dataType: string
+		lineageTag: 717be46f-7e60-4495-905c-52d438206924
+		summarizeBy: none
+		sourceColumn: eventyear
+
+		annotation SummarizationSetBy = Automatic
+
+	column callid
+		dataType: string
+		lineageTag: e82f8ecb-e83d-414b-9805-cffd3a69d327
+		summarizeBy: none
+		sourceColumn: callid
+
+		annotation SummarizationSetBy = Automatic
+
+	column calldiscussionid
+		dataType: string
+		lineageTag: b929462f-6d0a-48e8-b941-af49006f1e6f
+		summarizeBy: none
+		sourceColumn: calldiscussionid
+
+		annotation SummarizationSetBy = Automatic
+
+	column calltype
+		dataType: string
+		lineageTag: e7eca38a-6011-4424-baa3-8741d1497a68
+		summarizeBy: none
+		sourceColumn: calltype
+
+		annotation SummarizationSetBy = Automatic
+
+	column topicsdiscussed
+		dataType: string
+		lineageTag: ee1ce055-53e0-40e4-94d7-dfaa137a91ac
+		summarizeBy: none
+		sourceColumn: topicsdiscussed
+
+		annotation SummarizationSetBy = Automatic
+
+	column mslid
+		dataType: string
+		lineageTag: f5b2dd35-be64-4fdb-b218-3183df0841b9
+		summarizeBy: none
+		sourceColumn: mslid
+
+		annotation SummarizationSetBy = Automatic
+
+	column mslname
+		dataType: string
+		lineageTag: ed5b1583-728f-4d4b-807f-8047113be8fd
+		summarizeBy: none
+		sourceColumn: mslname
+
+		annotation SummarizationSetBy = Automatic
+
+	column attendees
+		dataType: int64
+		formatString: 0
+		lineageTag: f9d6d3a3-ea64-41d9-a112-d25e2ea91c52
+		summarizeBy: sum
+		sourceColumn: attendees
+
+		annotation SummarizationSetBy = Automatic
+
+	column interactiontype
+		dataType: string
+		lineageTag: b2ad9075-180c-4fa1-8934-de81cfc3b319
+		summarizeBy: none
+		sourceColumn: interactiontype
+
+		annotation SummarizationSetBy = Automatic
+
+	column interactionreason
+		dataType: string
+		lineageTag: 65cbf9d5-ed19-49d4-8388-c6b188e0c5dd
+		summarizeBy: none
+		sourceColumn: interactionreason
+
+		annotation SummarizationSetBy = Automatic
+
+	column interactionvenue
+		dataType: string
+		lineageTag: 7e53723e-100a-4a69-b86c-f1a1c82fe3f4
+		summarizeBy: none
+		sourceColumn: interactionvenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column conferenceoradvisoryboard
+		dataType: string
+		lineageTag: 7b89cf28-d1ad-4dca-8399-7750fbe55efa
+		summarizeBy: none
+		sourceColumn: conferenceoradvisoryboard
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazzproduct
+		dataType: string
+		lineageTag: 5f9a9c08-310b-43b1-830d-5358bc138f42
+		summarizeBy: none
+		sourceColumn: jazzproduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column generaltopics
+		dataType: string
+		lineageTag: 4f7036f3-31fe-4dbb-a6ad-796e9141e7c7
+		summarizeBy: none
+		sourceColumn: generaltopics
+
+		annotation SummarizationSetBy = Automatic
+
+	column specifictopics
+		dataType: string
+		lineageTag: 6d1f4582-18d0-4fd3-bc17-b8026f65e2a4
+		summarizeBy: none
+		sourceColumn: specifictopics
+
+		annotation SummarizationSetBy = Automatic
+
+	column specifictopicssplit
+		dataType: string
+		lineageTag: c36bc0ca-740b-4c0d-a563-d5a49e5ca81a
+		summarizeBy: none
+		sourceColumn: specifictopicssplit
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourcespresented
+		dataType: string
+		lineageTag: 64cdf3ec-8996-4518-a618-ef501f6f83e7
+		summarizeBy: none
+		sourceColumn: resourcespresented
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazzdiseasestate
+		dataType: string
+		lineageTag: b3a85df5-b988-4f0c-8a04-092c68fc04f1
+		summarizeBy: none
+		sourceColumn: jazzdiseasestate
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightid
+		dataType: string
+		lineageTag: d4341f7e-5c19-47b2-a362-569acb847a74
+		summarizeBy: none
+		sourceColumn: medicalinsightid
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightactivityid
+		dataType: string
+		lineageTag: 928b20f5-fe3d-4cf5-aa71-418c03441114
+		summarizeBy: none
+		sourceColumn: medicalinsightactivityid
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightcreateddate
+		dataType: string
+		lineageTag: 5da55df1-85ec-44ea-8265-8cf3dc313908
+		summarizeBy: none
+		sourceColumn: medicalinsightcreateddate
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightdescription
+		dataType: string
+		lineageTag: 5973cd28-f96b-4397-a0e9-97d27672fcb6
+		summarizeBy: none
+		sourceColumn: medicalinsightdescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightstatus
+		dataType: string
+		lineageTag: 39193bdd-dbf3-44dc-98ca-8913007a21d0
+		summarizeBy: none
+		sourceColumn: medicalinsightstatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightproduct
+		dataType: string
+		lineageTag: c4687f71-d2f6-4ae7-a3e1-05886ae1e9bf
+		summarizeBy: none
+		sourceColumn: medicalinsightproduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column diseasemolecule
+		dataType: string
+		lineageTag: 6d65c371-0185-4a0c-8bbf-7ce89d0ad183
+		summarizeBy: none
+		sourceColumn: diseasemolecule
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsighttopic
+		dataType: string
+		lineageTag: 5d782d1b-38d1-4636-b1bd-71e48cf438c4
+		summarizeBy: none
+		sourceColumn: medicalinsighttopic
+
+		annotation SummarizationSetBy = Automatic
+
+	column medicalinsightsummary
+		dataType: string
+		lineageTag: c3c60b6c-e121-48a9-85b4-94d9b521a22e
+		summarizeBy: none
+		sourceColumn: medicalinsightsummary
+
+		annotation SummarizationSetBy = Automatic
+
+	column mslteam
+		dataType: string
+		lineageTag: e0a15390-f1cd-4298-81e8-306066764a0d
+		summarizeBy: none
+		sourceColumn: mslteam
+
+		annotation SummarizationSetBy = Automatic
+
+	column territoryid
+		dataType: string
+		lineageTag: c8301dc5-79a1-4bef-92d7-794b44272cac
+		summarizeBy: none
+		sourceColumn: territoryid
+
+		annotation SummarizationSetBy = Automatic
+
+	column territoryname
+		dataType: string
+		lineageTag: 92953537-d0bd-49a4-847e-bc227e0c506d
+		summarizeBy: none
+		sourceColumn: territoryname
+
+		annotation SummarizationSetBy = Automatic
+
+	column regioncode
+		dataType: string
+		lineageTag: c65d5136-79b1-43d0-b906-e6718f7ff292
+		summarizeBy: none
+		sourceColumn: regioncode
+
+		annotation SummarizationSetBy = Automatic
+
+	column regionname
+		dataType: string
+		lineageTag: 4f5c5307-6fb6-4f0d-a9fc-c493c36f9610
+		summarizeBy: none
+		sourceColumn: regionname
+
+		annotation SummarizationSetBy = Automatic
+
+	column areacode
+		dataType: string
+		lineageTag: 3f1d8778-b6bf-41d3-87b9-eaf011cf2e1e
+		summarizeBy: none
+		sourceColumn: areacode
+
+		annotation SummarizationSetBy = Automatic
+
+	column callproductinclusionflag
+		dataType: string
+		lineageTag: 37b4ebf8-876b-4c3a-9011-8b89ce22cb3d
+		summarizeBy: none
+		sourceColumn: callproductinclusionflag
+
+		annotation SummarizationSetBy = Automatic
+
+	column calldiseaseinclusionflag
+		dataType: string
+		lineageTag: 7b040c67-5417-4330-9db3-1a06d8dc1ce0
+		summarizeBy: none
+		sourceColumn: calldiseaseinclusionflag
+
+		annotation SummarizationSetBy = Automatic
+
+	column callstatus
+		dataType: string
+		lineageTag: 88ccc88e-46db-46ec-b704-d7ab874d34ed
+		summarizeBy: none
+		sourceColumn: callstatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcpterritoryid
+		dataType: string
+		lineageTag: b8210166-85e9-428e-94f2-2b83303f912f
+		summarizeBy: none
+		sourceColumn: hcpterritoryid
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcpterritoryname
+		dataType: string
+		lineageTag: 8a861e36-6a68-4b32-8ace-e15b6657ee62
+		summarizeBy: none
+		sourceColumn: hcpterritoryname
+
+		annotation SummarizationSetBy = Automatic
+
+	column keymedicalobjective
+		dataType: string
+		lineageTag: 40699154-a574-410a-b981-2d63cfe9e838
+		summarizeBy: none
+		sourceColumn: keymedicalobjective
+
+		annotation SummarizationSetBy = Automatic
+
+	column onctl
+		dataType: string
+		lineageTag: 2cf87702-b14e-4c62-8ea0-f546640b8eb8
+		summarizeBy: none
+		sourceColumn: onctl
+
+		annotation SummarizationSetBy = Automatic
+
+	column top_5_account_hcp
+		dataType: string
+		lineageTag: c18e64ff-3351-444c-894b-c92404428ed5
+		summarizeBy: none
+		sourceColumn: top_5_account_hcp
+
+		annotation SummarizationSetBy = Automatic
+
+	column top_5_account_name
+		dataType: string
+		lineageTag: d6c7d1b2-64d6-473c-bec1-7a5b0297113b
+		summarizeBy: none
+		sourceColumn: top_5_account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column allied_health_hcp
+		dataType: string
+		lineageTag: 11583253-8f47-4a3d-8c3c-2cd60a33ccd6
+		summarizeBy: none
+		sourceColumn: allied_health_hcp
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: string
+		lineageTag: 18176794-7deb-4d1b-b3bd-6c9dfe1c6365
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: e53f433d-e0d9-4b13-b65e-baf053f29ee6
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedate
+		dataType: string
+		lineageTag: ec11343a-c85a-4507-bcc4-ec049079f1a8
+		summarizeBy: none
+		sourceColumn: updatedate
+
+		annotation SummarizationSetBy = Automatic
+
+	column updateby
+		dataType: string
+		lineageTag: 31dc006c-eb0f-4285-9864-8b30147cf78c
+		summarizeBy: none
+		sourceColumn: updateby
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadfrequency
+		dataType: string
+		lineageTag: e09711cb-7c2f-4594-ba86-35f90875b5db
+		summarizeBy: none
+		sourceColumn: loadfrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sourcetable
+		dataType: string
+		lineageTag: b2f1b4d0-dcbf-463c-be8e-47f372157876
+		summarizeBy: none
+		sourceColumn: sourcetable
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_kol_by_products__c
+		dataType: string
+		lineageTag: aec9ce68-d272-4ebb-9d38-32ae7f1e8085
+		summarizeBy: none
+		sourceColumn: jazz_kol_by_products__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_kol_affiliations__c
+		dataType: string
+		lineageTag: 53a71b1d-9082-4dfa-b185-a62153aac6bd
+		summarizeBy: none
+		sourceColumn: jazz_kol_affiliations__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column metric_type
+		dataType: string
+		lineageTag: 6c61a9b3-66df-4b91-91bc-51c32a207c01
+		summarizeBy: none
+		sourceColumn: metric_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column msl_dorda_tgt_flag
+		dataType: string
+		lineageTag: c0471f02-213d-4895-b827-ab5bc96162ed
+		summarizeBy: none
+		sourceColumn: msl_dorda_tgt_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column primaryhcojazzid
+		dataType: string
+		lineageTag: 637b2918-13d9-4a1d-a56b-5f3d637ed02e
+		summarizeBy: none
+		sourceColumn: primaryhcojazzid
+
+		annotation SummarizationSetBy = Automatic
+
+	column primayhconame
+		dataType: string
+		lineageTag: 9180757d-cbec-4d41-bce5-72b9a143efc4
+		summarizeBy: none
+		sourceColumn: primayhconame
+
+		annotation SummarizationSetBy = Automatic
+
+	column credetialshcp
+		dataType: string
+		lineageTag: cc5246f9-237d-4fb5-bf45-862d10b2757f
+		summarizeBy: none
+		sourceColumn: credetialshcp
+
+		annotation SummarizationSetBy = Automatic
+
+	column speciality
+		dataType: string
+		lineageTag: 8395c241-ec5f-4226-a8ae-de1d9ee1220f
+		summarizeBy: none
+		sourceColumn: speciality
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_type
+		dataType: string
+		lineageTag: 31524005-66c8-4d7b-abf7-fc3d8e35c530
+		summarizeBy: none
+		sourceColumn: account_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_interaction_duration
+		dataType: string
+		lineageTag: 1c5dc293-820e-4216-9d6b-68f5f80121cc
+		summarizeBy: none
+		sourceColumn: jazz_interaction_duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'InteractionDuration_Minutes (AVG)' =
+			
+			SWITCH(
+			    TRUE(),
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "0.25 hours", 15,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "0.5 hours", 30,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "0.75 hours", 45,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "1.0 hours", 60,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "1.5 hours", 90,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "2.0 hours", 120,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "2.5 hours", 150,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "3.0 hours", 180,
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "3.5 hours", 210,
+			    --VALUE(SUBSTITUTE( sam_hemonc_events_daily_msl[jazz_interaction_duration]," hours","")) >3.0, ">180",
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: ef7efc76-414c-46f6-a2e3-816d9efd840d
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column InteractionDuration_Minutes = ```
+			
+			SWITCH(
+			    TRUE(),
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "0.25 hours", "15 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "0.5 hours", "30 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "0.75 hours", "45 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "1.0 hours", "60 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "1.5 hours", "90 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "2.0 hours", "120 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "2.5 hours", "150 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "3.0 hours", "180 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = "3.5 hours", "210 min",
+			    sam_hemonc_events_daily_msl[jazz_interaction_duration] = ">3.0 hours", ">180 min",
+			    BLANK()
+			)
+			
+			```
+		lineageTag: a64e07da-ba1a-42c8-9d2b-435d23f8349d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column discussion_topics_dorda
+		dataType: string
+		lineageTag: c6ca40be-c188-4a4f-b28e-17cce9396b99
+		summarizeBy: none
+		sourceColumn: discussion_topics_dorda
+
+		annotation SummarizationSetBy = Automatic
+
+	column discussion_dorda
+		dataType: string
+		lineageTag: e1100e28-19d0-4317-be1a-64e6e0c3a2b5
+		summarizeBy: none
+		sourceColumn: discussion_dorda
+
+		annotation SummarizationSetBy = Automatic
+
+	column interaction_reason_dorda
+		dataType: string
+		lineageTag: 16586522-df16-4c9e-9929-a85b6f7b2c94
+		summarizeBy: none
+		sourceColumn: interaction_reason_dorda
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sam_hemonc_events_daily_msl = m
+		mode: import
+		source = ```
+				let
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_CommercialUS", [HierarchicalNavigation=true]),
+				    commdw_Database = Source{[Name="commdw",Kind="Database"]}[Data],
+				    sam_hemonc_bu_Schema = commdw_Database{[Name="sam_hemonc_bu",Kind="Schema"]}[Data],
+				    sam_hemonc_events_daily_msl_Table = sam_hemonc_bu_Schema{[Name="sam_hemonc_events_daily_msl",Kind="Table"]}[Data],
+				
+				    // 👇 Apply both filters here
+				    FilteredRows = Table.SelectRows( 
+				    sam_hemonc_events_daily_msl_Table,
+				    each 
+				        [eventtype] = "Topics Discussed"
+				        and Text.StartsWith([hcpterritoryid], "14")
+				        and [mslteam] = "US DORDA MSL"
+				)
+				
+				in
+				    FilteredRows
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

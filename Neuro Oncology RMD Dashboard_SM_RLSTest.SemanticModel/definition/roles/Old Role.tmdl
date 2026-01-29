@@ -1,0 +1,36 @@
+role 'Old Role'
+	modelPermission: read
+
+	tablePermission sam_hemonc_user_security_extract = ```
+			VAR currentUser =
+			    UPPER(
+			        LEFT(
+			            USERPRINCIPALNAME(),
+			            FIND("@", USERPRINCIPALNAME(),,1) - 1
+			        )
+			    )
+			 
+			VAR userInTable =
+			    CALCULATE (
+			        COUNTROWS ( sam_hemonc_user_security_extract ),
+			        FILTER (
+			            sam_hemonc_user_security_extract,
+			            sam_hemonc_user_security_extract[rsmusername] = currentUser
+			                || sam_hemonc_user_security_extract[abdusername] = currentUser
+			                || sam_hemonc_user_security_extract[oamusername] = currentUser
+			        )
+			    ) > 0
+			 
+			RETURN
+			    SWITCH (
+			        TRUE(),
+			        sam_hemonc_user_security_extract[rsmusername] = currentUser, TRUE(),
+			        sam_hemonc_user_security_extract[abdusername] = currentUser, TRUE(),
+			        sam_hemonc_user_security_extract[oamusername] = currentUser, TRUE(),
+			 
+			        NOT userInTable
+			    )
+			```
+
+	annotation PBI_Id = da65066ebfe64419ada5dfcf7b9cadaa
+

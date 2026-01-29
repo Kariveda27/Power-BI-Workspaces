@@ -1,0 +1,845 @@
+table sam_hemonc_product_metrics
+	lineageTag: 884f0e13-d00e-4aa6-b1fe-30928d733078
+
+	measure 'No Of Engagement HCPs' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_product_metrics[jazzid]),
+			    FILTER(
+			        sam_hemonc_product_metrics, NOT(ISBLANK(sam_hemonc_product_metrics[jazzid]) &&
+			        TRIM(sam_hemonc_product_metrics[jazz_cmrx_sentiment_flag]) = "Limited Awareness"
+			    )
+			)
+			),0)
+		formatString: 0
+		lineageTag: d0c6c0e0-01c0-4b15-8211-01f2cd19f366
+
+	measure 'Reluctant Engagement HCPs' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_product_metrics[jazzid]),
+			    FILTER(
+			        sam_hemonc_product_metrics, NOT(ISBLANK(sam_hemonc_product_metrics[jazzid]) &&
+			        TRIM(sam_hemonc_product_metrics[jazz_cmrx_sentiment_flag]) = "Limited Awareness"
+			    )
+			)),0)
+		formatString: 0
+		lineageTag: 0a97f495-56ec-4143-be83-f03ccdd952cf
+
+	measure 'Consistent Engagement HCPs' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_product_metrics[jazzid]),
+			    FILTER(
+			        sam_hemonc_product_metrics, NOT(ISBLANK(sam_hemonc_product_metrics[jazzid]) &&
+			        TRIM(sam_hemonc_product_metrics[jazz_cmrx_sentiment_flag]) = "Limited Awareness"
+			    )
+			)),0)
+		formatString: 0
+		lineageTag: aacbbc67-11d7-44b3-981f-6cd5754260f8
+
+	measure 'Frequent Engagement HCPs' =
+			
+			COALESCE(CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_product_metrics[jazzid]),
+			    FILTER(
+			        sam_hemonc_product_metrics, NOT(ISBLANK(sam_hemonc_product_metrics[jazzid]) &&
+			        TRIM(sam_hemonc_product_metrics[jazz_cmrx_sentiment_flag]) = "Limited Awareness"
+			    )
+			)),0)
+		formatString: 0
+		lineageTag: eacfac1b-c61a-4dc4-91d2-6e4da0e41a68
+
+	measure 'Distinct Jazz ID' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_product_metrics[jazzid]),
+			    FILTER(
+			        sam_hemonc_product_metrics, NOT(ISBLANK(sam_hemonc_product_metrics[jazzid]) --&&
+			        //TRIM(sam_hemonc_product_metrics[jazz_cmrx_sentiment_flag]) = "Limited Awareness"
+			    )
+			))
+		formatString: 0
+		lineageTag: fa14412a-ebdf-46d4-95c8-8fcae91f885c
+
+	measure 'Max Date' = MAX(sam_hemonc_product_metrics[updatedate])
+		formatString: Short Date
+		lineageTag: 3f1098e9-0870-49a8-b3cd-2613953d81b6
+
+	measure 'Last Sales Interaction Date' =
+			
+			VAR MaxSalesDate =
+			    CALCULATE(
+			        MAX( Date ),
+			        FILTER(
+			            ALL( sam_hemonc_interactions ),
+			            field = "Sales"
+			        )
+			    )
+			RETURN
+			    MaxSalesDate
+		lineageTag: 91353be5-dd39-497a-99e9-f5025f3ea550
+
+	measure 'Last interaction Date (#MSL Team)' =
+			
+			CALCULATE(
+			  MAX( sam_hemonc_product_metrics[updatedate] ),
+			  sam_hemonc_product_metrics[fieldtype] = "MSL"
+			)
+		formatString: Short Date
+		lineageTag: f35c5e54-38ad-4745-83da-ec0237609d31
+
+	measure 'Last interaction Date (#Sales Team)' =
+			
+			CALCULATE(
+			  MAX( sam_hemonc_product_metrics[updatedate] ),
+			  sam_hemonc_product_metrics[fieldtype] = "Sales"
+			)
+		formatString: General Date
+		lineageTag: 0d0cb448-498b-4281-be98-cd5ad9fa7dac
+
+	measure '#MSL Interactions (D.JID)' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(sam_hemonc_product_metrics[jazzid]),
+			    FILTER(
+			        sam_hemonc_product_metrics, NOT(ISBLANK(sam_hemonc_product_metrics[jazzid]) &&
+			        TRIM(sam_hemonc_product_metrics[fieldtype]) = "MSL"
+			    )
+			))
+		formatString: 0
+		lineageTag: 25f8b264-1ac3-4abf-b22b-cd8d243d26ee
+
+	measure '# MSL Interactions' = ```
+			
+			
+			    CALCULATE(
+			        DISTINCTCOUNT(sam_hemonc_product_metrics[id]),
+			        FILTER(
+			            sam_hemonc_product_metrics,
+			            NOT(ISBLANK(sam_hemonc_product_metrics[id]))
+			            && TRIM(sam_hemonc_product_metrics[fieldtype]) = "MSL"
+			        )
+			    )
+			```
+		formatString: 0
+		lineageTag: cc08f9bd-176b-4d28-802e-799d244ef8fd
+
+	column 'Product & Fieldtype Flag' = ```
+			
+			sam_hemonc_product_metrics[fieldtype] = "Chimerix MSL" &&
+			sam_hemonc_product_metrics[productname] IN { "Dordaviprone", "Disease State Education" }
+			
+			```
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 167a1d14-6f23-4475-bd4f-88a8ef18841e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 51b31515-eb1c-4281-829f-a9669f927de2
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: 244def29-01a7-4627-97b7-82255369ff0f
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: 6e7afdc0-e298-43be-8080-82de57d0454f
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_cmrx_msl_segment
+		dataType: string
+		lineageTag: ceb8fa2c-0692-44f5-af21-3ef917226e59
+		summarizeBy: none
+		sourceColumn: jazz_cmrx_msl_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column products_vod_c
+		dataType: string
+		lineageTag: c9b61461-6826-4e7c-b909-586f44b7e5eb
+		summarizeBy: none
+		sourceColumn: products_vod_c
+
+		annotation SummarizationSetBy = Automatic
+
+	column productname
+		dataType: string
+		lineageTag: 0b513bc1-dc72-44e9-8aee-a2e77ad733f9
+		summarizeBy: none
+		sourceColumn: productname
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_cmrx_trial_investigator
+		dataType: string
+		lineageTag: b33781e6-e381-4ca7-ada1-f7f6be846f82
+		summarizeBy: none
+		sourceColumn: jazz_cmrx_trial_investigator
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_cmrx_oam_tier_hcp
+		dataType: string
+		lineageTag: f2b6c66e-dd2f-4160-83de-4c6a3806194f
+		summarizeBy: none
+		sourceColumn: jazz_cmrx_oam_tier_hcp
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_cmrx_oam_tier_hco
+		dataType: string
+		lineageTag: 1ed9ef45-3bb5-4001-94e8-fdede25ae75b
+		summarizeBy: none
+		sourceColumn: jazz_cmrx_oam_tier_hco
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazz_cmrx_sentiment_flag
+		dataType: string
+		lineageTag: 0166d893-c58a-4dc3-9632-b5d57ff374da
+		summarizeBy: none
+		sourceColumn: jazz_cmrx_sentiment_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column jazzid
+		dataType: string
+		lineageTag: ae5250a0-b703-4c6b-9c13-056f97169613
+		summarizeBy: none
+		sourceColumn: jazzid
+
+		annotation SummarizationSetBy = Automatic
+
+	column veevaid
+		dataType: string
+		lineageTag: a8b8216d-ce67-4be2-be20-0db174fbd910
+		summarizeBy: none
+		sourceColumn: veevaid
+
+		annotation SummarizationSetBy = Automatic
+
+	column veevaurl
+		dataType: string
+		lineageTag: f4de77ba-5108-4f55-b289-3510c86cd3a3
+		summarizeBy: none
+		sourceColumn: veevaurl
+
+		annotation SummarizationSetBy = Automatic
+
+	column dea
+		dataType: string
+		lineageTag: 3ee658bc-18f3-4fc2-b07f-8206d3ffdcc5
+		summarizeBy: none
+		sourceColumn: dea
+
+		annotation SummarizationSetBy = Automatic
+
+	column npi
+		dataType: string
+		lineageTag: 6bd39732-cbb9-47e8-86df-6b9e7d2a2831
+		summarizeBy: none
+		sourceColumn: npi
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_name
+		dataType: string
+		lineageTag: b9c025a3-7bad-4841-8514-934850165cb9
+		summarizeBy: none
+		sourceColumn: hcp_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_address
+		dataType: string
+		lineageTag: e1e095c9-a479-497f-9817-6cfe46d2efa8
+		summarizeBy: none
+		sourceColumn: hcp_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_city
+		dataType: string
+		lineageTag: b7556dfe-01ac-411a-93bd-2df7a2e72635
+		summarizeBy: none
+		sourceColumn: hcp_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_state
+		dataType: string
+		lineageTag: 8deacc1c-6dc2-406f-bdb6-d5c6c10d93e8
+		summarizeBy: none
+		sourceColumn: hcp_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_zipcode
+		dataType: string
+		lineageTag: 93c8c36c-803a-4434-b3ca-c35c996a0c76
+		summarizeBy: none
+		sourceColumn: hcp_zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_credential
+		dataType: string
+		lineageTag: 7088bb1d-84e2-49f7-8513-a4fadb554a76
+		summarizeBy: none
+		sourceColumn: hcp_credential
+
+		annotation SummarizationSetBy = Automatic
+
+	column fieldtype
+		dataType: string
+		lineageTag: e854200e-6be4-429c-905d-677682f62e8a
+		summarizeBy: none
+		sourceColumn: fieldtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column territory_id
+		dataType: string
+		lineageTag: 10f021a6-7011-47eb-a863-f49ab96fd921
+		summarizeBy: none
+		sourceColumn: territory_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column territory_name
+		dataType: string
+		lineageTag: b6b81bc6-c6ba-4f6b-8802-06c5994dd8dc
+		summarizeBy: none
+		sourceColumn: territory_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamname
+		dataType: string
+		lineageTag: 2d33b363-7cdb-4ab0-b256-2df8ad026550
+		summarizeBy: none
+		sourceColumn: oamname
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_id
+		dataType: string
+		lineageTag: 26faaa6a-f6cf-4bb3-96d1-f38372c580cb
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_name
+		dataType: string
+		lineageTag: e8e1075d-26c6-4f36-bedd-ed1f17951426
+		summarizeBy: none
+		sourceColumn: region_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsmname
+		dataType: string
+		lineageTag: 8760804b-3093-4ee7-92a6-2819761ce96c
+		summarizeBy: none
+		sourceColumn: rsmname
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_id
+		dataType: string
+		lineageTag: c0c3a9a5-2f64-4759-a35c-9a98ac23ffd2
+		summarizeBy: none
+		sourceColumn: area_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_name
+		dataType: string
+		lineageTag: 866cbbfb-5daf-4aa5-a716-c63f44701502
+		summarizeBy: none
+		sourceColumn: area_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column abdname
+		dataType: string
+		lineageTag: 96ce1070-a11a-49b9-bd24-ed559874ec76
+		summarizeBy: none
+		sourceColumn: abdname
+
+		annotation SummarizationSetBy = Automatic
+
+	column nation_id
+		dataType: string
+		lineageTag: 8c3a5948-7634-488d-9c92-905ccb6c931e
+		summarizeBy: none
+		sourceColumn: nation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nation_name
+		dataType: string
+		lineageTag: 539cb847-d874-4ccb-9ff5-7b69755d4304
+		summarizeBy: none
+		sourceColumn: nation_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column directorname
+		dataType: string
+		lineageTag: 6c515eb4-1480-4aec-891b-1b08244dc329
+		summarizeBy: none
+		sourceColumn: directorname
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d05b6f38-4bc2-4310-a485-853dd79fd16d
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		variation Variation
+			isDefault
+			relationship: 89f73aa2-744c-4851-9f96-500e50c68d4d
+			defaultHierarchy: LocalDateTable_3d51b027-0274-4d2a-85d2-07faa608765f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: 54ef2720-4fa3-4430-8971-d426f008307c
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 75874de9-bd46-448c-bcd6-b237b4c7ddc0
+		summarizeBy: none
+		sourceColumn: updatedate
+
+		variation Variation
+			isDefault
+			relationship: b6525926-a0d4-482c-bdc8-a035b88146a3
+			defaultHierarchy: LocalDateTable_d77351a1-d9e5-4c07-b6c5-7052a0bcff8e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updateby
+		dataType: string
+		lineageTag: 19b3efe0-e9e6-487c-9172-59e2b6f83ebf
+		summarizeBy: none
+		sourceColumn: updateby
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadfrequency
+		dataType: string
+		lineageTag: 74473d20-e3a4-4454-b950-69ff177456ec
+		summarizeBy: none
+		sourceColumn: loadfrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sourcefilename
+		dataType: string
+		lineageTag: af6e0b37-19c5-42d5-96ed-afced7001103
+		summarizeBy: none
+		sourceColumn: sourcefilename
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_amldecile
+		dataType: string
+		lineageTag: 3a5f435e-e28c-46ab-b379-f342a147091d
+		summarizeBy: none
+		sourceColumn: hco_amldecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_amlpotentialdecilesegment
+		dataType: string
+		lineageTag: 76638a87-41bb-49a2-8dc7-97b157e91c42
+		summarizeBy: none
+		sourceColumn: hco_amlpotentialdecilesegment
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_btc_decile
+		dataType: string
+		lineageTag: 5c6003ee-39e2-47af-aa1f-d30f936f6030
+		summarizeBy: none
+		sourceColumn: hco_btc_decile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_btcdecilegroup
+		dataType: string
+		lineageTag: fa832481-cd10-4a07-bb8b-340cc1cf12c0
+		summarizeBy: none
+		sourceColumn: hco_btcdecilegroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_btcgeadecile
+		dataType: string
+		lineageTag: 64f81824-30b8-40c2-8b07-b9be44b9ea47
+		summarizeBy: none
+		sourceColumn: hco_btcgeadecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_erwinazesalesdecile
+		dataType: string
+		lineageTag: 839c89a8-07d1-4b22-ac43-fb5cb38d1717
+		summarizeBy: none
+		sourceColumn: hco_erwinazesalesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_geadecile
+		dataType: string
+		lineageTag: 0d03d6dc-36b0-48b6-8b41-dac58ae38044
+		summarizeBy: none
+		sourceColumn: hco_geadecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_lungdecile
+		dataType: string
+		lineageTag: 62d8964d-1237-4df6-9e30-4901bb2e4fb5
+		summarizeBy: none
+		sourceColumn: hco_lungdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacct_btc_decile
+		dataType: string
+		lineageTag: c0aff029-dd0d-4d30-a131-02f3f60eb15e
+		summarizeBy: none
+		sourceColumn: hco_mainacct_btc_decile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctamldecile
+		dataType: string
+		lineageTag: 40ce8644-f3bc-474d-8cfd-85a29bb7314b
+		summarizeBy: none
+		sourceColumn: hco_mainacctamldecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainaccterwinazesalesdecile
+		dataType: string
+		lineageTag: 0fa97c11-ff2b-4e12-8e00-8c1b14a2da6a
+		summarizeBy: none
+		sourceColumn: hco_mainaccterwinazesalesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctlungdecile
+		dataType: string
+		lineageTag: 563336e1-dc51-4003-8076-8d0b8330306d
+		summarizeBy: none
+		sourceColumn: hco_mainacctlungdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctoncasparsalesdecile
+		dataType: string
+		lineageTag: 9ef24776-339f-4ad2-bc54-65aad0f16108
+		summarizeBy: none
+		sourceColumn: hco_mainacctoncasparsalesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctrylazeblendeddecile
+		dataType: string
+		lineageTag: 3965cae4-c08b-448b-8a77-b6fb6570ea08
+		summarizeBy: none
+		sourceColumn: hco_mainacctrylazeblendeddecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctsclcdecile
+		dataType: string
+		lineageTag: f29c4e09-8002-4008-9212-79557af05850
+		summarizeBy: none
+		sourceColumn: hco_mainacctsclcdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctvyxeosdecile
+		dataType: string
+		lineageTag: bb25ff47-93fb-409c-a3ff-d04d9390ef02
+		summarizeBy: none
+		sourceColumn: hco_mainacctvyxeosdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacctzepzelcadecile
+		dataType: string
+		lineageTag: 5f75dfa7-dab2-4cb7-b78a-92755ebae1df
+		summarizeBy: none
+		sourceColumn: hco_mainacctzepzelcadecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_oncasparsalesdecile
+		dataType: string
+		lineageTag: 03ea1e3a-3051-49fb-87fb-a3f671667fdb
+		summarizeBy: none
+		sourceColumn: hco_oncasparsalesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_rylazeblendeddecile
+		dataType: string
+		lineageTag: e56a212e-f42d-4c39-b14e-c3103bf8223b
+		summarizeBy: none
+		sourceColumn: hco_rylazeblendeddecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_sclcdecile
+		dataType: string
+		lineageTag: 27c3a26b-f779-4590-8df0-68ae0cf2d50d
+		summarizeBy: none
+		sourceColumn: hco_sclcdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_sclcpotentialdecilesegment
+		dataType: string
+		lineageTag: 7a534448-515e-4479-af2a-bf6f6d859b9d
+		summarizeBy: none
+		sourceColumn: hco_sclcpotentialdecilesegment
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_vyxeos2020salesdecile
+		dataType: string
+		lineageTag: 0370e097-88d7-42ef-af1f-1bfa16621bb3
+		summarizeBy: none
+		sourceColumn: hco_vyxeos2020salesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_vyxsalesdecile
+		dataType: string
+		lineageTag: a50237c2-b38f-4a18-8346-4b0e98dccfdb
+		summarizeBy: none
+		sourceColumn: hco_vyxsalesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_zepzelcaltdsalesdecile
+		dataType: string
+		lineageTag: 5e5ad40e-bc96-41b5-a5b4-2cfa899f236a
+		summarizeBy: none
+		sourceColumn: hco_zepzelcaltdsalesdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_btc_tier
+		dataType: string
+		lineageTag: f971747b-4443-4778-8f94-768d3bacb0be
+		summarizeBy: none
+		sourceColumn: hco_btc_tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_mainacct_btc_tier
+		dataType: string
+		lineageTag: 3297f4a1-c2b4-4e24-9cab-61c7147d9de7
+		summarizeBy: none
+		sourceColumn: hco_mainacct_btc_tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_rylazetier
+		dataType: string
+		lineageTag: 8636c32c-cc29-4ed6-b293-4d2e9b3cca9f
+		summarizeBy: none
+		sourceColumn: hco_rylazetier
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_vyxeostier
+		dataType: string
+		lineageTag: 0cc14d72-11a3-4789-841a-d4d4e05dba8f
+		summarizeBy: none
+		sourceColumn: hco_vyxeostier
+
+		annotation SummarizationSetBy = Automatic
+
+	column hco_zepzelcatier
+		dataType: string
+		lineageTag: 2c887684-f03b-4c5e-8bfe-a6bf73eaa4b7
+		summarizeBy: none
+		sourceColumn: hco_zepzelcatier
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_amldecile
+		dataType: string
+		lineageTag: 0459a0b8-4e01-4e1d-a74f-d431a8c062c9
+		summarizeBy: none
+		sourceColumn: hcp_amldecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_btc_decile
+		dataType: string
+		lineageTag: 6dbee23a-eaca-4ae9-813e-ec1abd36c71a
+		summarizeBy: none
+		sourceColumn: hcp_btc_decile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_btcgeadecile
+		dataType: string
+		lineageTag: 71383501-7a94-4ce6-ae25-276c36822d4f
+		summarizeBy: none
+		sourceColumn: hcp_btcgeadecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_geadecile
+		dataType: string
+		lineageTag: c314e59d-58a2-460d-97ea-c7a6465cfb3d
+		summarizeBy: none
+		sourceColumn: hcp_geadecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_lungdecile
+		dataType: string
+		lineageTag: d7e71d65-fa40-4c17-95df-811563c4df48
+		summarizeBy: none
+		sourceColumn: hcp_lungdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_sclcdecile
+		dataType: string
+		lineageTag: 86bda587-d9a2-474b-a216-56a1f266f92d
+		summarizeBy: none
+		sourceColumn: hcp_sclcdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column hcp_vyxeosdecile
+		dataType: string
+		lineageTag: af329390-1843-467e-b8c0-ec2841b679f4
+		summarizeBy: none
+		sourceColumn: hcp_vyxeosdecile
+
+		annotation SummarizationSetBy = Automatic
+
+	column msl_dorda_tgt_flag
+		dataType: string
+		lineageTag: 81c190ac-d246-4ba4-8b04-1db4f86d1d78
+		summarizeBy: none
+		sourceColumn: msl_dorda_tgt_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column primaryhcojazzid
+		dataType: string
+		lineageTag: 78fb9bb9-80c9-491c-8ec9-ca474d791637
+		summarizeBy: none
+		sourceColumn: primaryhcojazzid
+
+		annotation SummarizationSetBy = Automatic
+
+	column primayhconame
+		dataType: string
+		lineageTag: eb13856f-4657-46a8-9e1b-b0468e34a8e8
+		summarizeBy: none
+		sourceColumn: primayhconame
+
+		annotation SummarizationSetBy = Automatic
+
+	column credetialshcp
+		dataType: string
+		lineageTag: 47cb1ccb-39c0-4d28-92b9-87c08eede3ca
+		summarizeBy: none
+		sourceColumn: credetialshcp
+
+		annotation SummarizationSetBy = Automatic
+
+	column speciality
+		dataType: string
+		lineageTag: 89e7784c-ab70-4f46-98ee-2de4186613c5
+		summarizeBy: none
+		sourceColumn: speciality
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_type
+		dataType: string
+		lineageTag: c395dfb2-c1ef-4986-9715-69932f7777e2
+		summarizeBy: none
+		sourceColumn: account_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sam_hemonc_product_metrics = m
+		mode: import
+		source = ```
+				let
+				    // Step 1: Connect to Redshift source
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_CommercialUS", [HierarchicalNavigation=true]),
+				
+				    // Step 2: Navigate to database and schema
+				    commdw_Database = Source{[Name="commdw",Kind="Database"]}[Data],
+				    sam_hemonc_bu_Schema = commdw_Database{[Name="sam_hemonc_bu",Kind="Schema"]}[Data],
+				
+				    // Step 3: Load the sam_hemonc_product_metrics table
+				    sam_hemonc_product_metrics_Table = sam_hemonc_bu_Schema{[Name="sam_hemonc_product_metrics",Kind="Table"]}[Data],
+				
+				    // Step 4: Apply filters
+				    FilteredRows = Table.SelectRows(
+				        sam_hemonc_product_metrics_Table,
+				        each 
+				            List.Contains(
+				                {"US DORDA MSL", "US Chimerix MSL"},
+				                [fieldtype]
+				            ) and
+				            List.Contains(
+				                {"Disease State Education", "ONC 206", "Dordaviprone", "Pipeline", "MODEYSO"},
+				                [productname]
+				            ) and
+				            [jazz_cmrx_sentiment_flag] <> null and Text.Trim([jazz_cmrx_sentiment_flag]) <> ""
+				  
+				    )
+				
+				in
+				    FilteredRows
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

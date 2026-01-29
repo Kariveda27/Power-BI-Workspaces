@@ -1,0 +1,40 @@
+role 'New Role'
+	modelPermission: read
+
+	tablePermission sam_hemonc_user_security_extract = ```
+			VAR currentUser =
+			    UPPER(
+			        LEFT(
+			            USERPRINCIPALNAME(),
+			            FIND("@", USERPRINCIPALNAME(),,1) - 1
+			        )
+			    )
+			 
+			VAR userInTable =
+			    CALCULATE (
+			        COUNTROWS ( sam_hemonc_user_security_extract ),
+			        FILTER (
+			            sam_hemonc_user_security_extract,
+			            sam_hemonc_user_security_extract[rsmusername] = currentUser
+			                || sam_hemonc_user_security_extract[abdusername] = currentUser
+			                || sam_hemonc_user_security_extract[oamusername] = currentUser
+			        )
+			    ) > 0
+			 
+			RETURN
+			    SWITCH (
+			        TRUE(),
+			 
+			        -- FULL ACCESS OVERRIDE (ADDED)
+			        currentUser = "MAXELROD", TRUE(),
+			 
+			        sam_hemonc_user_security_extract[rsmusername] = currentUser, TRUE(),
+			        sam_hemonc_user_security_extract[abdusername] = currentUser, TRUE(),
+			        sam_hemonc_user_security_extract[oamusername] = currentUser, TRUE(),
+			 
+			        NOT userInTable
+			    )
+			```
+
+	annotation PBI_Id = 98f83fc726c448ea9a5b9c2af271dd4f
+
