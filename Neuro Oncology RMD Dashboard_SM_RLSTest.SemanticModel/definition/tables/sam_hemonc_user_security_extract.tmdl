@@ -1,0 +1,282 @@
+table sam_hemonc_user_security_extract
+	lineageTag: 11fd1b24-3a9d-49d4-9f6d-7b245d4131a7
+
+	measure 'Logged In' = USERPRINCIPALNAME()
+		lineageTag: c4dc47e7-abe5-4f5a-925e-acfdc9d4978f
+
+	measure 'Current User' = UPPER(LEFT(USERPRINCIPALNAME(), FIND("@",USERPRINCIPALNAME(),,1) -1))
+		lineageTag: 5802f5c8-c9db-4ae4-b5fa-57ee0cefab3f
+
+	column rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: c592ea87-141f-4d4f-99d8-1a9e51a8d24d
+		summarizeBy: sum
+		sourceColumn: rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column territoryid
+		dataType: string
+		lineageTag: a357a4b5-6243-43a4-b647-99ed0c3a1cc2
+		summarizeBy: none
+		sourceColumn: territoryid
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamterrname
+		dataType: string
+		lineageTag: cfab2e61-9684-4472-8900-a1c2dac9679d
+		summarizeBy: none
+		sourceColumn: oamterrname
+
+		annotation SummarizationSetBy = Automatic
+
+	column oam_employee_id
+		dataType: string
+		lineageTag: 81618f58-aff2-4b6d-86ff-ea471e4a3cb9
+		summarizeBy: none
+		sourceColumn: oam_employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamname
+		dataType: string
+		lineageTag: 3c8479dd-5bba-49eb-a635-3bb848a6d59f
+		summarizeBy: none
+		sourceColumn: oamname
+
+		annotation SummarizationSetBy = Automatic
+
+	column oamusername
+		dataType: string
+		lineageTag: d8efc39a-8649-456c-8f92-157695e4f491
+		summarizeBy: none
+		sourceColumn: oamusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column secoam_employee_id
+		dataType: string
+		lineageTag: 8a113b5f-822a-4fce-beb7-55f78e0cdce4
+		summarizeBy: none
+		sourceColumn: secoam_employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column secoamname
+		dataType: string
+		lineageTag: 94ee60b4-ba31-4530-8282-dae62e1e61d0
+		summarizeBy: none
+		sourceColumn: secoamname
+
+		annotation SummarizationSetBy = Automatic
+
+	column secoamusername
+		dataType: string
+		lineageTag: 3104e410-f8f6-4e0c-ae18-a7bee076defa
+		summarizeBy: none
+		sourceColumn: secoamusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column regionid
+		dataType: string
+		lineageTag: 19416958-420e-4b25-8e73-33bc3be13cae
+		summarizeBy: none
+		sourceColumn: regionid
+
+		annotation SummarizationSetBy = Automatic
+
+	column regionname
+		dataType: string
+		lineageTag: 83bd089d-2e08-4ce0-8123-70c75fe575c7
+		summarizeBy: none
+		sourceColumn: regionname
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsm_employee_id
+		dataType: string
+		lineageTag: 41ed52cb-f171-4e77-a2c6-a62c02ea5beb
+		summarizeBy: none
+		sourceColumn: rsm_employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsmname
+		dataType: string
+		lineageTag: cd84c42a-9781-401d-b4a9-541aee1273bc
+		summarizeBy: none
+		sourceColumn: rsmname
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsmusername
+		dataType: string
+		lineageTag: 372d14ac-49db-4c62-8429-67e68b871d38
+		summarizeBy: none
+		sourceColumn: rsmusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column secrsm_employee_id
+		dataType: string
+		lineageTag: caeff138-2dd9-4712-8fcc-10358a747c79
+		summarizeBy: none
+		sourceColumn: secrsm_employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column secrsmname
+		dataType: string
+		lineageTag: dbb4e62c-13a6-4f33-a8bf-e99c7ce3b84a
+		summarizeBy: none
+		sourceColumn: secrsmname
+
+		annotation SummarizationSetBy = Automatic
+
+	column secrsmusername
+		dataType: string
+		lineageTag: ace36ec8-4c5f-4056-b0a3-ed1f1cba022b
+		summarizeBy: none
+		sourceColumn: secrsmusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column areaid
+		dataType: string
+		lineageTag: 78c973e7-7f01-49bf-99b5-84e8be51bcb5
+		summarizeBy: none
+		sourceColumn: areaid
+
+		annotation SummarizationSetBy = Automatic
+
+	column areaname
+		dataType: string
+		lineageTag: 16f50958-c870-4a52-9d20-a46dec5b03bd
+		summarizeBy: none
+		sourceColumn: areaname
+
+		annotation SummarizationSetBy = Automatic
+
+	column abd_employee_id
+		dataType: string
+		lineageTag: 1ec25d80-26e0-4f48-bf92-e2e94d2e62ad
+		summarizeBy: none
+		sourceColumn: abd_employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column abdname
+		dataType: string
+		lineageTag: a11ead8f-43dc-409a-8b95-048ed4360b9c
+		summarizeBy: none
+		sourceColumn: abdname
+
+		annotation SummarizationSetBy = Automatic
+
+	column abdusername
+		dataType: string
+		lineageTag: e0a7e0eb-aa36-4f21-9e2e-e12b91ba8617
+		summarizeBy: none
+		sourceColumn: abdusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column nationid
+		dataType: string
+		lineageTag: e806355f-01c8-42ee-bba7-905210a0d8d9
+		summarizeBy: none
+		sourceColumn: nationid
+
+		annotation SummarizationSetBy = Automatic
+
+	column nationname
+		dataType: string
+		lineageTag: 738f0876-8c68-4086-95e0-3f230e3058b7
+		summarizeBy: none
+		sourceColumn: nationname
+
+		annotation SummarizationSetBy = Automatic
+
+	column director_employee_id
+		dataType: string
+		lineageTag: 0d7dfc4c-0126-496b-aeb5-95db01dba21d
+		summarizeBy: none
+		sourceColumn: director_employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column directorname
+		dataType: string
+		lineageTag: 4621e900-e9a1-4ca4-9a6f-062e40c71ca6
+		summarizeBy: none
+		sourceColumn: directorname
+
+		annotation SummarizationSetBy = Automatic
+
+	column directorusername
+		dataType: string
+		lineageTag: 20a01b56-d215-4ed9-8e1d-7a1467e7c623
+		summarizeBy: none
+		sourceColumn: directorusername
+
+		annotation SummarizationSetBy = Automatic
+
+	column fieldtype
+		dataType: string
+		lineageTag: 082181e6-1786-4f14-bfb1-c4492d03df5b
+		summarizeBy: none
+		sourceColumn: fieldtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaddate
+		dataType: string
+		lineageTag: 7f5243f0-2c27-4d1f-80fe-f7a9c7ce24e5
+		summarizeBy: none
+		sourceColumn: loaddate
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadedby
+		dataType: string
+		lineageTag: 8e00f86a-dfe3-4700-b29f-849f08b7e5d4
+		summarizeBy: none
+		sourceColumn: loadedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column loadfrequency
+		dataType: string
+		lineageTag: f4ce7bd3-f375-44f5-9627-4e4b92a72d21
+		summarizeBy: none
+		sourceColumn: loadfrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sourcetable
+		dataType: string
+		lineageTag: e05655fe-2a90-44ec-914c-6a6b8cff54b6
+		summarizeBy: none
+		sourceColumn: sourcetable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sam_hemonc_user_security_extract = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=PowerBI_Redshift_CommercialUS", [HierarchicalNavigation=true]),
+				    commdw_Database = Source{[Name="commdw",Kind="Database"]}[Data],
+				    sam_hemonc_bu_Schema = commdw_Database{[Name="sam_hemonc_bu",Kind="Schema"]}[Data],
+				    sam_hemonc_user_security_extract_Table = sam_hemonc_bu_Schema{[Name="sam_hemonc_user_security_extract",Kind="Table"]}[Data],
+				    #"Removed Duplicates" = Table.Distinct(sam_hemonc_user_security_extract_Table, {"territoryid"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

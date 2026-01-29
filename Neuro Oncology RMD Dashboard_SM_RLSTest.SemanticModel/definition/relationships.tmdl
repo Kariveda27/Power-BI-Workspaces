@@ -1,0 +1,59 @@
+relationship 0de3dfe7-9705-4cc2-9be1-85664c65d3f9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sam_hemonc_events_daily_msl.eventweekendingdate
+	toColumn: LocalDateTable_564a8c84-609e-45e3-832e-6b58f7c2b7b0.Date
+
+relationship 620ae20e-11d8-428c-91d7-346ec15ea588
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sam_hemonc_mirf_dorda.loaddate
+	toColumn: LocalDateTable_94d739d8-5aed-4619-90eb-b6938aeebe68.Date
+
+relationship f021ace4-e30f-49b5-b48c-041cc775aaf6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sam_hemonc_mirf_dorda.updatedate
+	toColumn: LocalDateTable_3244dbd8-d13d-4a0d-8846-f2ebc0010d13.Date
+
+relationship 70db4e9a-a7aa-ff92-6c2d-94fd72805bf2
+	fromColumn: sam_hemonc_events_daily_msl.jazzid
+	toColumn: 'JAZZ ID'.jazzid
+
+relationship 4c5a125a-556c-4a1f-889b-0c48b76763f8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sam_hemonc_mirf_dorda.date_time_closed
+	toColumn: LocalDateTable_b5a2a632-3b5d-4eb5-b651-7b07cc9c66a9.Date
+
+relationship ce141105-740d-f917-726e-23b533c2ca32
+	fromColumn: sam_hemonc_events_daily_msl.territoryid
+	toColumn: sam_hemonc_user_security_extract.territoryid
+
+relationship 89f73aa2-744c-4851-9f96-500e50c68d4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sam_hemonc_product_metrics.loaddate
+	toColumn: LocalDateTable_3d51b027-0274-4d2a-85d2-07faa608765f.Date
+
+relationship b6525926-a0d4-482c-bdc8-a035b88146a3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sam_hemonc_product_metrics.updatedate
+	toColumn: LocalDateTable_d77351a1-d9e5-4c07-b6c5-7052a0bcff8e.Date
+
+relationship AutoDetected_ad145a8a-f6c7-4ef9-8272-e3ea900b30a5
+	fromColumn: sam_hemonc_product_metrics.territory_id
+	toColumn: sam_hemonc_user_security_extract.territoryid
+
+relationship d45b06a9-026a-6b6e-92ce-b4142ecc410c
+	fromColumn: sam_hemonc_mirf_dorda.territoryid
+	toColumn: sam_hemonc_user_security_extract.territoryid
+
+relationship 79703ea1-fe00-41ff-ab0a-961229ea6969
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'DATE TABLE'.Date
+	toColumn: LocalDateTable_92b46337-ff9a-442b-a883-dd61ddaf364a.Date
+
+relationship f187b985-d64c-e80e-0495-0c2b865adc8f
+	fromColumn: sam_hemonc_events_daily_msl.eventdate
+	toColumn: 'DATE TABLE'.Date
+
+relationship 854d76b9-adb1-c292-bd32-d6568480e0af
+	fromColumn: sam_hemonc_mirf_dorda.date_time_opened
+	toColumn: 'DATE TABLE'.Date
+

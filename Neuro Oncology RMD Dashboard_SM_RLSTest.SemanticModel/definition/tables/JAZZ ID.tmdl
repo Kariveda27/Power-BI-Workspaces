@@ -1,0 +1,26 @@
+table 'JAZZ ID'
+	lineageTag: 528596f7-ad68-4aa0-ad57-5c66ef2c3538
+
+	column jazzid
+		lineageTag: 98493e4e-acbd-452b-b21c-74aa5f2e7065
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [jazzid]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'JAZZ ID' = calculated
+		mode: import
+		source =
+				FILTER (
+				    DISTINCT (
+				        UNION (
+				            SELECTCOLUMNS(sam_hemonc_events_daily_msl, "jazzid", sam_hemonc_events_daily_msl[jazzid]),
+				            SELECTCOLUMNS(sam_hemonc_product_metrics, "jazzid", sam_hemonc_product_metrics[jazzid])
+				        )
+				    ),
+				    NOT ISBLANK([jazzid])
+				)
+
+	annotation PBI_Id = 628743f178e149709f1618364dc53bbd
+

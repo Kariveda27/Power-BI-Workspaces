@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["sam_hemonc_events_daily_msl","sam_hemonc_mirf_dorda","sam_hemonc_product_metrics","sam_hemonc_user_security_extract"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table sam_hemonc_events_daily_msl
+ref table DateTableTemplate_88b8e0af-050c-4d82-a41e-327f2c160450
+ref table LocalDateTable_564a8c84-609e-45e3-832e-6b58f7c2b7b0
+ref table sam_hemonc_mirf_dorda
+ref table sam_hemonc_product_metrics
+ref table LocalDateTable_94d739d8-5aed-4619-90eb-b6938aeebe68
+ref table LocalDateTable_3244dbd8-d13d-4a0d-8846-f2ebc0010d13
+ref table sam_hemonc_user_security_extract
+ref table 'JAZZ ID'
+ref table 'DATE TABLE'
+ref table LocalDateTable_b5a2a632-3b5d-4eb5-b651-7b07cc9c66a9
+ref table LocalDateTable_3d51b027-0274-4d2a-85d2-07faa608765f
+ref table LocalDateTable_d77351a1-d9e5-4c07-b6c5-7052a0bcff8e
+ref table LocalDateTable_92b46337-ff9a-442b-a883-dd61ddaf364a
+
+ref role 'Old Role'
+ref role 'New Role'
+
+ref cultureInfo en-US
+
